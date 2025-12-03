@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alexander Acosta Consulting</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <!-- HEADER FIJO -->
+    <header class="header">
+        <div class="logo-text">Alexander Acosta Consulting</div>
+        <nav class="nav" id="navMenu">
+            <a href="#hero">Inicio</a>
+            <a href="#about">Acerca de</a>
+            <a href="#cases">Casos</a>
+            <a href="#services">Servicios</a>
+            <a href="#courses">Cursos</a>
+        </nav>
+        <div class="hamburger" id="hamburgerBtn">&#9776;</div>
+    </header>
+
+    <!-- HERO / BANNER SUPERIOR -->
+    <section id="hero" class="hero">
+        <h1>Alexander Acosta Consulting</h1>
+        <p class="slogan">Turning Market Insights into Growth</p>
+        <a href="#contact" class="cta-btn">Agenda una Sesión Estratégica</a>
+    </section>
+
+    <!-- ACERCA DE -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <!-- FOTO DE PERFIL (REEMPLAZAR) -->
+            <div class="about-img">
+                <!-- Insertar imagen final aquí -->
+                <img src="https://via.placeholder.com/350x400" alt="Foto de Alexander Acosta" />
+            </div>
+
+            <div class="about-text">
+                <!-- Reemplazar este texto con la versión final -->
+                <h2>Acerca de Alexander Acosta</h2>
+                <p>
+                    Bienvenido. Soy un consultor especializado en estrategia de negocios y marketing, con amplia experiencia en impulsar el crecimiento sostenible de organizaciones mediante análisis estratégico, posicionamiento de marca y diseño de rutas comerciales efectivas.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASOS DE ÉXITO -->
+    <section id="cases" class="cases">
+        <h2>Outstanding Marketing Stories</h2>
+        <div class="cases-grid">
+            <!-- Reemplazar el texto por los casos finales -->
+            <div class="case-card">Caso de Estudio: Crecimiento de 25% en 6 meses</div>
+            <div class="case-card">Caso de Estudio: Branding Estratégico Global</div>
+            <div class="case-card">Caso de Estudio: Optimización Comercial 40%</div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section id="services" class="services">
+        <h2>Servicios de Consultoría</h2>
+        <div class="services-grid">
+            <div class="service-card">Estrategia de Mercado</div>
+            <div class="service-card">Marketing Digital Integral</div>
+            <div class="service-card">Optimización de Ventas B2B</div>
+        </div>
+    </section>
+
+    <!-- CURSOS -->
+    <section id="courses" class="courses">
+        <h2>Cursos Disponibles</h2>
+        <ul class="courses-list">
+            <li>Masterclass: Análisis de la Competencia</li>
+            <li>Curso Avanzado de Posicionamiento SEO</li>
+        </ul>
+    </section>
+
+    <!-- FOOTER SIMPLE -->
+    <footer class="footer">
+        © 2025 Alexander Acosta Consulting. Todos los derechos reservados.
+    </footer>
+
+    <!-- JS PARA MENÚ RESPONSIVO -->
+    <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburgerBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
