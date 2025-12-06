@@ -1,99 +1,500 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alexander Acosta Consulting</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexander Acosta | Consulting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* =========================================
+           ESTILOS (DISEÑO) INTEGRADOS
+           ========================================= */
+        :root {
+            --primary: #0e2a47; /* Azul Navy */
+            --gold: #bfa15f;    /* Dorado Elegante */
+            --text: #333;
+            --bg-light: #fff;
+            --bg-off: #f4f6f8;
+            --font: 'Montserrat', sans-serif;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; } /* Desplazamiento suave */
+        body { font-family: var(--font); color: var(--text); line-height: 1.6; }
+        a { text-decoration:none; color:inherit; transition:0.3s; }
+        img { max-width: 100%; display: block; }
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+        /* HEADER */
+        .header {
+            background: var(--primary); padding: 15px 5%; position: fixed; width: 100%; top:0; z-index:1000;
+            display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .logo-container img { height: 60px; filter: brightness(0) invert(1); }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { color: #fff; text-transform: uppercase; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; }
+        .nav-links a:hover { color: var(--gold); }
+        .hamburger { display: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="styles.css" />
+        /* HERO SECTION */
+        #inicio {
+            height: 100vh;
+            background: linear-gradient(rgba(14,42,71,0.85), rgba(14,42,71,0.6)), url('Alex 2.jpeg');
+            background-size: cover; background-position: center top;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: #fff;
+            padding-top: 80px;
+        }
+        .hero-content h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 10px; line-height: 1.2; }
+        .hero-slogan { font-size: 1.5rem; color: var(--gold); font-style: italic; margin-bottom: 30px; }
+        .btn-main { background: var(--gold); color: var(--primary); padding: 15px 40px; font-weight: 700; border-radius: 4px; font-size: 1rem; }
+        .btn-main:hover { background: #fff; }
+
+        /* SECCIONES GENERALES */
+        section { padding: 80px 10%; }
+        .section-title { text-align: center; font-size: 2.2rem; color: var(--primary); margin-bottom: 50px; position: relative; }
+        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--gold); margin: 15px auto 0; }
+
+        /* ACERCA DE */
+        #acerca { background: var(--bg-light); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; align-items: center; }
+        .about-img img { border-radius: 8px; box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        .value-prop { border-left: 5px solid var(--gold); padding-left: 20px; margin: 25px 0; font-style: italic; color: #555; font-weight: 500; background: #fafafa; padding: 15px; }
+
+        /* SERVICIOS */
+        #servicios { background: var(--bg-off); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .service-card { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; transition: 0.3s; }
+        .service-card:hover { transform: translateY(-5px); border-bottom: 4px solid var(--gold); }
+        .service-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
+
+        /* CASOS DE EXITO (Stories) */
+        #casos { background: var(--bg-light); }
+        .cases-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .case-card { 
+            background: #fff; border: 1px solid #eee; border-radius: 8px; overflow: hidden; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; 
+        }
+        .case-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .case-content { padding: 25px; }
+        .case-date { color: #999; font-size: 0.85rem; display: block; margin-bottom: 10px; }
+        .case-card h3 { color: var(--primary); font-size: 1.1rem; margin-bottom: 10px; min-height: 50px;}
+        .case-card p { font-size: 0.9rem; color: #666; margin-bottom: 15px; }
+        .read-more { color: var(--gold); font-weight: 600; font-size: 0.9rem; }
+
+        /* CONTACTO */
+        #contacto { background: var(--primary); color: #fff; text-align: center; }
+        #contacto .section-title { color: #fff; }
+        .form-wrapper { max-width: 700px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 8px; color: #333; text-align: left; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.9rem; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; }
+        .btn-submit { width: 100%; background: var(--primary); color: #fff; border: none; padding: 15px; font-size: 1rem; font-weight: bold; cursor: pointer; border-radius: 4px; transition: 0.3s;}
+        .btn-submit:hover { background: var(--gold); color: var(--primary); }
+
+        /* FOOTER */
+        .footer { background: #05101c; color: #888; padding: 40px 10%; text-align: center; font-size: 0.9rem; }
+        .social-icons { margin-top: 20px; }
+        .social-icons a { color: #fff; font-size: 1.5rem; margin: 0 15px; }
+        .social-icons a:hover { color: var(--gold); }
+
+        /* MODAL (Ventana Emergente para Casos) */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); overflow-y: auto; }
+        .modal-content { background-color: #fff; margin: 5% auto; padding: 40px; border: 1px solid #888; width: 90%; max-width: 800px; border-radius: 8px; position: relative; }
+        .close-modal { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close-modal:hover { color: #000; }
+        .modal-body { margin-top: 20px; white-space: pre-line; text-align: left; color: #333; }
+        .quote-box { background: #f9f9f9; border-left: 5px solid var(--gold); padding: 20px; margin: 30px 0; font-style: italic; font-weight: 600; color: var(--primary); }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 70px; right: 0; background: var(--primary); width: 100%; flex-direction: column; padding: 20px; text-align: center; }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .about-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-    <!-- HEADER FIJO -->
+
     <header class="header">
-        <div class="logo-text">Alexander Acosta Consulting</div>
-        <nav class="nav" id="navMenu">
-            <a href="#hero">Inicio</a>
-            <a href="#about">Acerca de</a>
-            <a href="#cases">Casos</a>
-            <a href="#services">Servicios</a>
-            <a href="#courses">Cursos</a>
+        <div class="logo-container">
+            <a href="#inicio"><img src="Logo AA.png" alt="Alexander Acosta Logo"></a>
+        </div>
+        <nav class="nav-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#acerca">Acerca de</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#casos">Casos de Éxito</a>
+            <a href="#contacto">Contacto</a>
         </nav>
-        <div class="hamburger" id="hamburgerBtn">&#9776;</div>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
     </header>
 
-    <!-- HERO / BANNER SUPERIOR -->
-    <section id="hero" class="hero">
-        <h1>Alexander Acosta Consulting</h1>
-        <p class="slogan">Turning Market Insights into Growth</p>
-        <a href="#contact" class="cta-btn">Agenda una Sesión Estratégica</a>
+    <section id="inicio">
+        <div class="hero-content">
+            <h1>ALEXANDER ACOSTA</h1>
+            <p class="hero-slogan">"Turning Market Insights into Growth"</p>
+            <a href="#contacto" class="btn-main">Agenda una Sesión</a>
+        </div>
     </section>
 
-    <!-- ACERCA DE -->
-    <section id="about" class="about">
-        <div class="about-container">
-            <!-- FOTO DE PERFIL (REEMPLAZAR) -->
+    <section id="acerca">
+        <h2 class="section-title">Trayectoria Profesional</h2>
+        <div class="about-grid">
             <div class="about-img">
-                <!-- Insertar imagen final aquí -->
-                <img src="https://via.placeholder.com/350x400" alt="Foto de Alexander Acosta" />
+                <img src="Alex 1.jpeg" alt="Foto Alexander Acosta">
             </div>
-
             <div class="about-text">
-                <!-- Reemplazar este texto con la versión final -->
-                <h2>Acerca de Alexander Acosta</h2>
-                <p>
-                    Bienvenido. Soy un consultor especializado en estrategia de negocios y marketing, con amplia experiencia en impulsar el crecimiento sostenible de organizaciones mediante análisis estratégico, posicionamiento de marca y diseño de rutas comerciales efectivas.
-                </p>
+                <h3>Doctor en Ciencias Gerenciales | MBA</h3>
+                <p>Ejecutivo altamente motivado con un enfoque en la innovación y el liderazgo transformacional. Con más de 25 años de experiencia, he consolidado una carrera robusta en la industria farmacéutica y de consumo masivo, ocupando roles de alta dirección en empresas multinacionales como <strong>AstraZeneca, Sanofi y FC Laboratorios</strong>.</p>
+                
+                <div class="value-prop">
+                    "Combino una profunda base analítica (Business Intelligence & P&L) con habilidades blandas de Coaching certificado para no solo diseñar estrategias de crecimiento, sino garantizar que los equipos humanos sean capaces de ejecutarlas con excelencia."
+                </div>
+
+                <ul style="margin-top:20px; list-style:none;">
+                    <li><i class="fas fa-check-circle" style="color:var(--gold)"></i> Director de Unidades de Negocio (FC Laboratorios)</li>
+                    <li><i class="fas fa-check-circle" style="color:var(--gold)"></i> Gerente General Vzla & Col (SouthGenetics)</li>
+                    <li><i class="fas fa-check-circle" style="color:var(--gold)"></i> Gerente de Grupo Oncología (AstraZeneca)</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- CASOS DE ÉXITO -->
-    <section id="cases" class="cases">
-        <h2>Outstanding Marketing Stories</h2>
-        <div class="cases-grid">
-            <!-- Reemplazar el texto por los casos finales -->
-            <div class="case-card">Caso de Estudio: Crecimiento de 25% en 6 meses</div>
-            <div class="case-card">Caso de Estudio: Branding Estratégico Global</div>
-            <div class="case-card">Caso de Estudio: Optimización Comercial 40%</div>
+    <section id="servicios">
+        <h2 class="section-title">Soluciones Empresariales</h2>
+        
+        <h3 style="text-align:center; margin-bottom:30px; color:var(--primary);">Consultoría Estratégica</h3>
+        <div class="services-grid" style="margin-bottom:60px;">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-chart-pie"></i></div>
+                <h4>Marketing Efectivo</h4>
+                <p>Optimización de portafolio y desarrollo estratégico de nuevos negocios.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-coins"></i></div>
+                <h4>Finanzas & Rentabilidad</h4>
+                <p>Análisis de ROI en marketing y optimización financiera de marcas.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-users-cog"></i></div>
+                <h4>Fuerza de Ventas</h4>
+                <p>Modelos de compensación variable y efectividad de fuerza de ventas (SFE).</p>
+            </div>
         </div>
-    </section>
 
-    <!-- SERVICIOS -->
-    <section id="services" class="services">
-        <h2>Servicios de Consultoría</h2>
+        <h3 style="text-align:center; margin-bottom:30px; color:var(--primary);">Programas de Formación</h3>
         <div class="services-grid">
-            <div class="service-card">Estrategia de Mercado</div>
-            <div class="service-card">Marketing Digital Integral</div>
-            <div class="service-card">Optimización de Ventas B2B</div>
+            <div class="service-card">
+                <h4>Ventas de Alto Impacto</h4>
+                <p>Programa de habilidades para cerrar negocios en entornos competitivos.</p>
+            </div>
+            <div class="service-card">
+                <h4>Negociación Socrática</h4>
+                <p>Técnicas avanzadas para KAM y Representantes Comerciales.</p>
+            </div>
+            <div class="service-card">
+                <h4>Mercadeo Farmacéutico</h4>
+                <p>Estrategia avanzada para Gerentes de Producto (PM).</p>
+            </div>
+            <div class="service-card">
+                <h4>Coaching Ejecutivo</h4>
+                <p>Liderazgo para Gerentes de Ventas y Supervisores.</p>
+            </div>
         </div>
     </section>
 
-    <!-- CURSOS -->
-    <section id="courses" class="courses">
-        <h2>Cursos Disponibles</h2>
-        <ul class="courses-list">
-            <li>Masterclass: Análisis de la Competencia</li>
-            <li>Curso Avanzado de Posicionamiento SEO</li>
-        </ul>
+    <section id="casos">
+        <h2 class="section-title">Outstanding Marketing Stories</h2>
+        <div class="cases-grid">
+            <div class="case-card" onclick="openStory(13)">
+                <div class="case-content">
+                    <span class="case-date">Dic 3, 2025</span>
+                    <h3>Sales Force Sizing</h3>
+                    <p>La estrategia que redujo costos y redefinió el tamaño ideal de una fuerza de ventas.</p>
+                    <span class="read-more">Leer Historia &rarr;</span>
+                </div>
+            </div>
+            <div class="case-card" onclick="openStory(12)">
+                <div class="case-content">
+                    <span class="case-date">Nov 19, 2025</span>
+                    <h3>Síndrome del caballo muerto</h3>
+                    <p>Marketing con razón, no con el corazón: decisiones difíciles sobre productos.</p>
+                    <span class="read-more">Leer Historia &rarr;</span>
+                </div>
+            </div>
+            <div class="case-card" onclick="openStory(11)">
+                <div class="case-content">
+                    <span class="case-date">Nov 12, 2025</span>
+                    <h3>Launching with Precision</h3>
+                    <p>La revelación de un Task Force Team en marketing farmacéutico.</p>
+                    <span class="read-more">Leer Historia &rarr;</span>
+                </div>
+            </div>
+            <div class="case-card" onclick="openStory(10)">
+                <div class="case-content">
+                    <span class="case-date">Nov 5, 2025</span>
+                    <h3>Elasticidad Oculta</h3>
+                    <p>Inversión vs. Valor: Cuando el siguiente dólar deja de crear valor.</p>
+                    <span class="read-more">Leer Historia &rarr;</span>
+                </div>
+            </div>
+            <div class="case-card" onclick="openStory(9)">
+                <div class="case-content">
+                    <span class="case-date">Oct 29, 2025</span>
+                    <h3>Liderazgo en Arritmias</h3>
+                    <p>Cómo priorizar estratégicamente en cardiología sin perder el foco clínico.</p>
+                    <span class="read-more">Leer Historia &rarr;</span>
+                </div>
+            </div>
+            <div class="case-card" onclick="openStory(8)">
+                <div class="case-content">
+                    <span class="case-date">Oct 22, 2025</span>
+                    <h3>Soporte al Paciente</h3>
+                    <p>Más Allá del Tratamiento: El puente estratégico entre ciencia y acceso en Oncología.</p>
+                    <span class="read-more">Leer Historia &rarr;</span>
+                </div>
+            </div>
+            <div class="case-card" onclick="openStory(7)">
+                <div class="case-content">
+                    <span class="case-date">Oct 15, 2025</span>
+                    <h3>Epistemología y Marketing</h3>
+                    <p>Una experiencia reveladora en el camino doctoral.</p>
+                    <span class="read-more">Leer Historia &rarr;</span>
+                </div>
+            </div>
+            <div class="case-card" onclick="openStory(6)">
+                <div class="case-content">
+                    <span class="case-date">Oct 8, 2025</span>
+                    <h3>Stakeholder Mapping</h3>
+                    <p>De la Visión al Impacto: La Brújula del Estratega de Marketing.</p>
+                    <span class="read-more">Leer Historia &rarr;</span>
+                </div>
+            </div>
+            <div class="case-card" onclick="openStory(5)">
+                <div class="case-content">
+                    <span class="case-date">Oct 1, 2025</span>
+                    <h3>Innovación Galénica</h3>
+                    <p>Precision Segmenting via Innovative Disruption: Reinventar lo conocido.</p>
+                    <span class="read-more">Leer Historia &rarr;</span>
+                </div>
+            </div>
+            <div class="case-card" onclick="openStory(4)">
+                <div class="case-content">
+                    <span class="case-date">Sep 24, 2025</span>
+                    <h3>FODA sin rigurosidad</h3>
+                    <p>Cuando la omisión estratégica puede costar millones (Caso Pseudoefedrina).</p>
+                    <span class="read-more">Leer Historia &rarr;</span>
+                </div>
+            </div>
+            <div class="case-card" onclick="openStory(3)">
+                <div class="case-content">
+                    <span class="case-date">Sep 17, 2025</span>
+                    <h3>Reencuadrar el mercado</h3>
+                    <p>Cómo redefinir el mercado objetivo puede liberar el verdadero potencial de tu marca.</p>
+                    <span class="read-more">Leer Historia &rarr;</span>
+                </div>
+            </div>
+            <div class="case-card" onclick="openStory(2)">
+                <div class="case-content">
+                    <span class="case-date">Sep 10, 2025</span>
+                    <h3>Umbrella Branding</h3>
+                    <p>Cuando el conocimiento científico se convierte en estrategia de marca.</p>
+                    <span class="read-more">Leer Historia &rarr;</span>
+                </div>
+            </div>
+            <div class="case-card" onclick="openStory(1)">
+                <div class="case-content">
+                    <span class="case-date">Sep 3, 2025</span>
+                    <h3>Océanos azules en Urología</h3>
+                    <p>Cómo reinventamos el marketing ético en un mercado saturado.</p>
+                    <span class="read-more">Leer Historia &rarr;</span>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- FOOTER SIMPLE -->
+    <section id="contacto">
+        <h2 class="section-title">Hablemos de Crecimiento</h2>
+        <div class="form-wrapper">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label>Nombre Completo *</label>
+                    <input type="text" id="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label>Empresa</label>
+                    <input type="text" id="empresa">
+                </div>
+                <div class="form-group">
+                    <label>Teléfono *</label>
+                    <input type="tel" id="telefono" required>
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Consulta (Máx 500 palabras) *</label>
+                    <textarea id="consulta" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar Datos</button>
+            </form>
+        </div>
+    </section>
+
     <footer class="footer">
-        © 2025 Alexander Acosta Consulting. Todos los derechos reservados.
+        <h3>Alexander Acosta Consulting</h3>
+        <p>Turning Market Insights into Growth</p>
+        <div class="social-icons">
+            <a href="https://wa.me/584141404018" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://linkedin.com/in/alexander-acosta-65489a21" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:alexanderacostaconsulting@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <br>
+        <p style="font-size:0.8rem;">&copy; 2025 Todos los derechos reservados.</p>
     </footer>
 
-    <!-- JS PARA MENÚ RESPONSIVO -->
-    <script>
-        const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const navMenu = document.getElementById('navMenu');
+    <div id="storyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
 
-        hamburgerBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('open');
+    <script>
+        // 1. LÓGICA DEL MENÚ MÓVIL
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '70px';
+                navLinks.style.right = '0';
+                navLinks.style.background = '#0e2a47';
+                navLinks.style.width = '100%';
+                navLinks.style.padding = '20px';
+                navLinks.style.textAlign = 'center';
+            }
         });
+
+        // 2. FORMULARIO DE CONTACTO
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            const empresa = document.getElementById('empresa').value;
+            const email = document.getElementById('email').value;
+            const telefono = document.getElementById('telefono').value;
+            const consulta = document.getElementById('consulta').value;
+
+            // Alerta visual
+            alert(`Hola ${nombre}, Gracias por contactarnos.\n\nHemos tomado nota de tu solicitud y en breve te estaremos contactando para ampliar más acerca de tu necesidad.\n\nPara nosotros es un verdadero placer apoyar tu crecimiento y el de tu organización.\n\nAtentamente,\nAlexander Acosta`);
+            
+            // Envío por mailto (Fallback)
+            const subject = `Nueva Consulta Web: ${nombre}`;
+            const body = `Nombre: ${nombre}\nEmpresa: ${empresa}\nTel: ${telefono}\nEmail: ${email}\n\nConsulta:\n${consulta}`;
+            window.location.href = `mailto:alexanderacostaconsulting@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            contactForm.reset();
+        });
+
+        // 3. BASE DE DATOS DE HISTORIAS (13 CASOS)
+        const stories = {
+            1: {
+                title: "Navegando océanos azules en urología",
+                date: "Septiembre 3, 2025",
+                content: `<strong>Cómo reinventamos el marketing ético en un mercado saturado.</strong>\n\nHace unos pocos años, me encontraba frente a un gran desafío: liderar el marketing ético de una empresa farmacéutica local en un mercado de urología dominado por productos maduros y genéricos de bajo costo.\n\nEl tratamiento farmacológico para la hiperplasia prostática benigna (HPB) se mantenía prácticamente igual. El 95% de las ventas se concentraban en monoterapia. La brecha entre guidelines y práctica era abismal.\n\n<strong>Redescubriendo al paciente invisible</strong>\nEncontramos un segmento olvidado: pacientes en riesgo de progresión. Decidimos contar una historia con medicina basada en evidencia.\n\n<strong>Resultados</strong>\nEn solo 18 meses, la participación de la terapia combinada pasó del 5% al 23%.\n\n<div class="quote-box">"Cuando un mercado parece saturado, no es señal de rendirse, sino de profundizar."</div>`
+            },
+            2: {
+                title: "Umbrella Branding",
+                date: "Septiembre 10, 2025",
+                content: `<strong>Cuando el conocimiento científico se convierte en estrategia de marca.</strong>\n\nLiderando un portafolio de alergia fragmentado, usamos las nuevas guías ARIA como mapa estratégico. Cada molécula tenía su lugar en el algoritmo de tratamiento.\n\nCreamos una "Marca Paraguas" inspirada en David Aaker. Reposicionamos todo el portafolio bajo una misma narrativa científica y visual.\n\n<strong>Resultado</strong>\nLas marcas rezagadas ganaron visibilidad y el portafolio se unificó poderosamente.\n\n<div class="quote-box">"Deep scientific knowledge and strategic marketing create extraordinary results."</div>`
+            },
+            3: {
+                title: "Reencuadrar el mercado",
+                date: "Septiembre 17, 2025",
+                content: `<strong>Caso Ticagrelor: De nicho a oportunidad.</strong>\n\nTicagrelor tenía una historia comercial complicada. Competir solo contra otras marcas de la misma molécula limitaba el potencial (25k unidades vs 1M del líder Clopidogrel).\n\nDecidimos redefinir el mercado objetivo (Entry Market) incluyendo al líder. Con nueva evidencia (ACC/AHA Guidelines), posicionamos Ticagrelor como la opción superior.\n\n<strong>Lección</strong>\nPasamos de aspirar al 2.4% del share a mirar el 77.6% del mercado total.\n\n<div class="quote-box">"By framing our market landscape, we unlock our full brand potential."</div>`
+            },
+            4: {
+                title: "FODA sin rigurosidad",
+                date: "Septiembre 24, 2025",
+                content: `<strong>Caso Pseudoefedrina: Cuando la omisión cuesta millones.</strong>\n\nEn un análisis FODA rutinario, omitimos la amenaza regulatoria sobre la pseudoefedrina. Cuando México prohibió la molécula, nuestra marca quedó fuera del mercado.\n\nLa competencia, que sí lo previó, ya tenía lista una reformulación. Perdimos market share y posicionamiento por no anticipar el entorno político-legal.\n\n<div class="quote-box">"Without context, your strategy is just a guess."</div>`
+            },
+            5: {
+                title: "Innovación Galénica y Segmentación",
+                date: "Octubre 1, 2025",
+                content: `<strong>Reinventar lo conocido (AINES).</strong>\n\nEn un mercado maduro de analgésicos, innovamos con una tableta bicapa (liberación inmediata + prolongada). Esto permitió reducir la dosis diaria y mejorar la tolerancia.\n\nSustituimos las presentaciones estándar (océano rojo) por esta innovación premium. Usamos demostraciones "Show & Tell" en consultorios para tangibilizar el beneficio.\n\n<strong>Resultado</strong>\nLa marca escaló del puesto 22 al 14 en el ranking nacional.\n\n<div class="quote-box">"Precision Segmenting via Innovative Disruption."</div>`
+            },
+            6: {
+                title: "Stakeholder Mapping",
+                date: "Octubre 8, 2025",
+                content: `<strong>Caso Antibiótico Hospitalario (Teicoplanina).</strong>\n\nEl producto era invisible frente a la competencia genérica porque no estaba en los antibiogramas de rutina. El problema no era clínico, era sistémico.\n\nDiseñamos una estrategia multi-actor: facilitamos discos de sensibilidad a laboratorios, educamos a enfermería y activamos a infectólogos. Alinear a Marketing, Ventas y Acceso fue clave.\n\n<strong>Resultado</strong>\nSuperamos el presupuesto en un 20% y desplazamos a la competencia.\n\n<div class="quote-box">"Stakeholder Mapping is the ROI roadmap for value creation."</div>`
+            },
+            7: {
+                title: "Epistemología y Marketing",
+                date: "Octubre 15, 2025",
+                content: `<strong>Una experiencia reveladora en el camino doctoral.</strong>\n\nDescubrí que el marketing es un sistema de conocimiento en evolución. La irrupción de las neurociencias y la Big Data cambiaron los paradigmas de cómo entendemos al consumidor (de racional a emocional).\n\nIntegrar la epistemología me permitió desarrollar un enfoque más crítico y estratégico, entendiendo el "por qué" detrás de los datos.\n\n<div class="quote-box">"When marketing meets epistemology, strategy becomes wisdom."</div>`
+            },
+            8: {
+                title: "Soporte al Paciente en Oncología",
+                date: "Octubre 22, 2025",
+                content: `<strong>Más allá del tratamiento.</strong>\n\nEn cáncer de pulmón, el 30% de pacientes (EGFR+) no accedía a nuestro fármaco por falta de diagnóstico. El sistema de salud no cubría las pruebas.\n\nRelanzamos el Programa de Soporte al Paciente (PSP) facilitando pruebas gratuitas, incluyendo biopsia líquida en sangre. Esto eliminó la barrera de acceso.\n\n<strong>Resultado</strong>\nConectamos ciencia con empatía, incrementando significativamente el número de pacientes tratados.\n\n<div class="quote-box">"Patient Support is the strategic bridge between science, access and trust."</div>`
+            },
+            9: {
+                title: "Liderazgo en Arritmias",
+                date: "Octubre 29, 2025",
+                content: `<strong>Caso Amiodarona.</strong>\n\nUn estudio (ARREST) demostró eficacia en Fibrilación Ventricular (FV), un nicho pequeño pero crítico. ¿Debíamos abandonar el foco masivo en Fibrilación Auricular (FA)?\n\nDecidimos no excluir, sino sumar. Usamos la nueva indicación como prueba de potencia para reforzar el liderazgo global como "Antiarrítmico Integral".\n\n<div class="quote-box">"Strategic focus is about owning the space that matters most."</div>`
+            },
+            10: {
+                title: "Elasticidad Oculta",
+                date: "Noviembre 5, 2025",
+                content: `<strong>Inversión vs Valor.</strong>\n\nEstudiando la elasticidad de la inversión, aprendí que la relación no es lineal. Existen rendimientos decrecientes: llega un punto donde invertir un dólar más en promoción ya no genera ventas adicionales (saturación).\n\nEl reto gerencial no es gastar todo el presupuesto, sino encontrar el punto óptimo de rentabilidad.\n\n<div class="quote-box">"Investment elasticity is about knowing when more becomes less."</div>`
+            },
+            11: {
+                title: "Launching with Precision",
+                date: "Noviembre 12, 2025",
+                content: `<strong>El poder del Task Force Team.</strong>\n\nLos lanzamientos suelen fallar por falta de coordinación transversal. Marketing solo no basta.\n\nImplementé un equipo centralizado (Regulatorio, Logística, Finanzas, RRHH, Médico) con reuniones de seguimiento rigurosas. Esto permitió anticipar cuellos de botella y asegurar el tiempo de mercado.\n\n<div class="quote-box">"A true Task Force turns coordination into execution and success."</div>`
+            },
+            12: {
+                title: "Síndrome del caballo muerto",
+                date: "Noviembre 19, 2025",
+                content: `<strong>Marketing con razón, no con el corazón.</strong>\n\nLa presentación de 250mg de un antibiótico vendía <5% y estaba en riesgo de vencimiento. La inercia dictaba salvarla.\n\nEl análisis financiero fue claro: descontinuarla para proteger la rentabilidad de la marca y enfocar recursos en las presentaciones ganadoras (500mg y 750mg). La valentía gerencial es saber qué dejar de hacer.\n\n<div class="quote-box">"Strategic courage begins when we stop riding dead horses."</div>`
+            },
+            13: {
+                title: "Sales Force Sizing",
+                date: "Diciembre 3, 2025",
+                content: `<strong>Precisión Estratégica.</strong>\n\nAnalizando la Ley de Pareto, descubrí que para lanzar un nuevo producto no necesitábamos 1.000 médicos, sino los 312 que generaban el 80% del potencial.\n\nEsto redefinió el tamaño de la fuerza de ventas: bajamos de 20 a 12 visitadores necesarios. Menos costo, mayor foco, misma efectividad.\n\n<div class="quote-box">"Strategy is great. Precision is better."</div>`
+            }
+        };
+
+        // 4. LÓGICA DEL MODAL
+        const modal = document.getElementById("storyModal");
+        const modalBody = document.getElementById("modalBody");
+        const closeBtn = document.getElementsByClassName("close-modal")[0];
+
+        function openStory(id) {
+            const story = stories[id];
+            if(story) {
+                let htmlContent = \`
+                    <h2 style="color:#0e2a47">\${story.title}</h2>
+                    <span style="color:#888; display:block; margin-bottom:20px;">\${story.date}</span>
+                    <div class="modal-body">\${story.content}</div>
+                \`;
+                modalBody.innerHTML = htmlContent;
+                modal.style.display = "block";
+                document.body.style.overflow = "hidden";
+            }
+        }
+
+        closeBtn.onclick = function() { modal.style.display = "none"; document.body.style.overflow = "auto"; }
+        window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; document.body.style.overflow = "auto"; } }
     </script>
 </body>
 </html>
