@@ -110,10 +110,9 @@
         .section-title { text-align: center; font-size: 2.2rem; color: var(--primary); margin-bottom: 50px; position: relative; }
         .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--gold); margin: 15px auto 0; }
 
-        /* NOTAS AL PIE DE SECCIÓN (AJUSTADO: Menos margen superior) */
+        /* NOTAS AL PIE DE SECCIÓN */
         .section-footer-note {
             text-align: right;
-            /* CAMBIO: Reducido de 40px a 15px para subir el texto */
             margin-top: 15px; 
             font-style: italic;
             color: #666;
@@ -230,7 +229,7 @@
         </div>
         <nav class="nav-links">
             <a href="#inicio" data-i18n="menu_home">Inicio</a>
-            <a href="#acerca" data-i18n="menu_about">Trayectoria Profesional</a>
+            <a href="#acerca" data-i18n="menu_about">Acerca de mí</a>
             <a href="#servicios" data-i18n="menu_services">Servicios</a>
             <a href="#casos" data-i18n="menu_cases">Casos de Éxito</a>
             <a href="#contacto" data-i18n="menu_contact">Contacto</a>
@@ -260,10 +259,10 @@
             </div>
             <div class="about-text">
                 <div class="bio-block">
-                    <p data-i18n="bio_p1">Soy un líder ejecutivo y consultor en estrategia comercial, marketing y desarrollo de negocios con más de 25 años de experiencia en la industria farmacéutica, biotecnología y salud. He ocupado roles directivos en <strong>Sanofi, AstraZeneca, SouthGenetics y FC Laboratorios</strong>, liderando crecimiento, equipos multifuncionales y lanzamientos estratégicos en líneas éticas, especialidades, oncología y OTC.</p>
+                    <p data-i18n="bio_p1">Soy un líder ejecutivo y consultor en estrategia comercial, marketing y desarrollo de negocios con más de 25 años de experiencia en la industria farmacéutica, biotecnología y salud. He ocupado roles directivos en <b>Sanofi, AstraZeneca, SouthGenetics y FC Laboratorios</b>, liderando crecimiento, equipos multifuncionales y lanzamientos estratégicos en líneas éticas, especialidades, oncología y OTC.</p>
                 </div>
                 <div class="bio-block">
-                    <p data-i18n="bio_p2">Combino visión estratégica, analítica avanzada y tecnologías emergentes —incluyendo <strong>Business Intelligence, Power BI e Inteligencia Artificial</strong>— para transformar insights del mercado en crecimiento sostenible.</p>
+                    <p data-i18n="bio_p2">Combino visión estratégica, analítica avanzada y tecnologías emergentes —incluyendo <b>Business Intelligence, Power BI e Inteligencia Artificial</b>— para transformar insights del mercado en crecimiento sostenible.</p>
                 </div>
                 
                 <ul class="bio-credentials">
@@ -383,12 +382,14 @@
         // --- 1. TRADUCCIONES ---
         const translations = {
             es: {
-                menu_home: "Inicio", menu_about: "Trayectoria Profesional", menu_services: "Servicios", menu_cases: "Casos de Éxito", menu_contact: "Contacto",
+                menu_home: "Inicio", 
+                menu_about: "Acerca de mí", // CAMBIO AQUÍ
+                menu_services: "Servicios", menu_cases: "Casos de Éxito", menu_contact: "Contacto",
                 btn_schedule: "Agenda una Reunión",
                 about_title: "Trayectoria Profesional",
                 about_subtitle: "Doctor en Ciencias Gerenciales | MBA",
-                bio_p1: "Soy un líder ejecutivo y consultor en estrategia comercial, marketing y desarrollo de negocios con más de 25 años de experiencia en la industria farmacéutica, biotecnología y salud. He ocupado roles directivos en <strong>Sanofi, AstraZeneca, SouthGenetics y FC Laboratorios</strong>, liderando crecimiento, equipos multifuncionales y lanzamientos estratégicos en líneas éticas, especialidades, oncología y OTC.",
-                bio_p2: "Combino visión estratégica, analítica avanzada y tecnologías emergentes —incluyendo <strong>Business Intelligence, Power BI e Inteligencia Artificial</strong>— para transformar insights del mercado en crecimiento sostenible.",
+                bio_p1: "Soy un líder ejecutivo y consultor en estrategia comercial, marketing y desarrollo de negocios con más de 25 años de experiencia en la industria farmacéutica, biotecnología y salud. He ocupado roles directivos en <b>Sanofi, AstraZeneca, SouthGenetics y FC Laboratorios</b>, liderando crecimiento, equipos multifuncionales y lanzamientos estratégicos en líneas éticas, especialidades, oncología y OTC.",
+                bio_p2: "Combino visión estratégica, analítica avanzada y tecnologías emergentes —incluyendo <b>Business Intelligence, Power BI e Inteligencia Artificial</b>— para transformar insights del mercado en crecimiento sostenible.",
                 cred_1: "Coach Ejecutivo Certificado ICC (UK)",
                 cred_2: "Doctor en Ciencias Gerenciales & MBA",
                 cred_3: "Conferencista en liderazgo y estrategia comercial",
@@ -414,12 +415,14 @@
                 read_more: "Leer Historia"
             },
             en: {
-                menu_home: "Home", menu_about: "Professional Career", menu_services: "Services", menu_cases: "Success Stories", menu_contact: "Contact",
+                menu_home: "Home", 
+                menu_about: "About me", // CAMBIO AQUÍ
+                menu_services: "Services", menu_cases: "Success Stories", menu_contact: "Contact",
                 btn_schedule: "Schedule a Meeting",
-                about_title: "Professional Career",
+                about_title: "Professional Career", // CAMBIO AQUÍ
                 about_subtitle: "Doctor in Management Science | MBA",
-                bio_p1: "I am an executive leader and consultant in commercial strategy, marketing, and business development with over 25 years of experience in the pharmaceutical, biotechnology, and healthcare industries. I have held leadership roles at <strong>Sanofi, AstraZeneca, SouthGenetics, and FC Laboratorios</strong>, driving growth, leading cross-functional teams, and managing strategic launches in ethical lines, specialties, oncology, and OTC.",
-                bio_p2: "I combine strategic vision, advanced analytics, and emerging technologies—including <strong>Business Intelligence, Power BI, and Artificial Intelligence</strong>—to transform market insights into sustainable growth.",
+                bio_p1: "I am an executive leader and consultant in commercial strategy, marketing, and business development with over 25 years of experience in the pharmaceutical, biotechnology, and healthcare industries. I have held leadership roles at <b>Sanofi, AstraZeneca, SouthGenetics, and FC Laboratorios</b>, driving growth, leading cross-functional teams, and managing strategic launches in ethical lines, specialties, oncology, and OTC.",
+                bio_p2: "I combine strategic vision, advanced analytics, and emerging technologies—including <b>Business Intelligence, Power BI, and Artificial Intelligence</b>—to transform market insights into sustainable growth.",
                 cred_1: "Certified Executive Coach ICC (UK)",
                 cred_2: "Doctor in Management Sciences & MBA",
                 cred_3: "Speaker on leadership and commercial strategy",
@@ -525,7 +528,7 @@
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[currentLang][key]) {
-                    el.innerText = translations[currentLang][key];
+                    el.innerHTML = translations[currentLang][key]; // .innerHTML para respetar <b>
                 }
             });
 
