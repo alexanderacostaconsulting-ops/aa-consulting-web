@@ -14,7 +14,7 @@
         :root {
             --primary: #0e2a47; 
             --gold: #bfa15f;    
-            --text-gray: #e0e0e0; 
+            --text-menu: #f4f4f4; /* Gris casi blanco para el menú */
             --text-dark: #333;
             --bg-light: #fff;
             --bg-off: #f4f6f8;
@@ -31,7 +31,7 @@
            ========================================= */
         .header {
             background: transparent; 
-            padding: 5px 5%; 
+            padding: 15px 5%; 
             position: fixed; 
             width: 100%; 
             top: 0; 
@@ -41,40 +41,46 @@
             align-items: center; 
             transition: all 0.4s ease;
         }
+        
+        /* Fondo azul sólido al bajar */
         .header.scrolled {
             background: var(--primary); 
             padding: 10px 5%;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
-        .logo-container img { height: 80px; filter: brightness(0) invert(1); transition: 0.3s; }
+
+        .logo-container img { height: 70px; filter: brightness(0) invert(1); transition: 0.3s; }
         .header.scrolled .logo-container img { height: 60px; } 
         
+        /* MENÚ */
         .nav-links { 
             display: flex; gap: 25px; align-items: center;
-            margin-right: 150px; /* Evita tapar el logo del banner */
+            /* IMPORTANTE: Margen derecho grande para no tapar el logo de la imagen */
+            margin-right: 200px; 
         }
         .nav-links a { 
-            color: var(--text-gray); 
-            text-transform: uppercase; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; 
-            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            color: var(--text-menu); /* Gris Claro */
+            text-transform: uppercase; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; 
+            text-shadow: 0 1px 3px rgba(0,0,0,0.9); /* Sombra fuerte para leerse sobre blanco */
         }
         .nav-links a:hover { color: var(--gold); }
 
-        /* Botón Idioma */
+        /* BOTÓN IDIOMA */
         .lang-btn {
             border: 1px solid var(--gold); padding: 5px 10px; border-radius: 4px;
             color: var(--gold) !important; font-size: 0.75rem !important; cursor: pointer; display:flex; gap:5px;
+            text-shadow: none !important; background: rgba(0,0,0,0.3);
         }
-        .lang-btn:hover { background: var(--gold); color: var(--primary) !important; text-shadow:none;}
+        .lang-btn:hover { background: var(--gold); color: var(--primary) !important; }
 
-        .hamburger { display: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+        .hamburger { display: none; color: #fff; font-size: 1.5rem; cursor: pointer; text-shadow: 0 1px 3px rgba(0,0,0,0.9); }
 
         /* =========================================
-           3. HERO SECTION (BANNER INTELIGENTE)
+           3. HERO SECTION (BANNER ESCRITORIO)
            ========================================= */
         #inicio {
             height: 100vh;
-            /* IMAGEN DE ESCRITORIO */
+            /* FOTO HORIZONTAL (ESCRITORIO) */
             background-image: url('Alex 2.png'); 
             background-size: cover; 
             background-position: center;
@@ -83,8 +89,9 @@
             text-align: center; color: #fff; padding-bottom: 40px; position: relative;
         }
         
+        /* Sombra inferior suave */
         #inicio::before {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 35%; 
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 40%; 
             background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); z-index: 1;
         }
 
@@ -108,20 +115,17 @@
         .section-title { text-align: center; font-size: 2.2rem; color: var(--primary); margin-bottom: 50px; position: relative; }
         .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--gold); margin: 15px auto 0; }
 
-        /* Acerca de */
         #acerca { background: var(--bg-light); }
         .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; align-items: center; }
         .about-img img { border-radius: 8px; box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
         .value-prop { border-left: 5px solid var(--gold); padding-left: 20px; margin: 25px 0; font-style: italic; color: #555; font-weight: 500; background: #fafafa; padding: 15px; }
 
-        /* Servicios */
         #servicios { background: var(--bg-off); }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         .service-card { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; transition: 0.3s; }
         .service-card:hover { transform: translateY(-5px); border-bottom: 4px solid var(--gold); }
         .service-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
 
-        /* Casos de Éxito */
         #casos { background: var(--bg-light); }
         .cases-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
         .case-card { background: #fff; border: 1px solid #eee; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
@@ -132,7 +136,6 @@
         .case-card p { font-size: 0.9rem; color: #666; margin-bottom: 15px; }
         .read-more { color: var(--gold); font-weight: 600; font-size: 0.9rem; }
 
-        /* Contacto */
         #contacto { background: var(--primary); color: #fff; text-align: center; }
         #contacto .section-title { color: #fff; }
         .form-wrapper { max-width: 700px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 8px; color: #333; text-align: left; }
@@ -142,13 +145,11 @@
         .btn-submit { width: 100%; background: var(--primary); color: #fff; border: none; padding: 15px; font-size: 1rem; font-weight: bold; cursor: pointer; border-radius: 4px; transition: 0.3s;}
         .btn-submit:hover { background: var(--gold); color: var(--primary); }
 
-        /* Footer */
         .footer { background: #05101c; color: #888; padding: 50px 10%; text-align: center; font-size: 0.9rem; }
         .social-icons-footer { margin-top: 25px; }
         .social-icons-footer a { color: #fff; font-size: 2rem; margin: 0 15px; transition: 0.3s; }
         .social-icons-footer a:hover { color: var(--gold); }
 
-        /* Modal */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); overflow-y: auto; }
         .modal-content { background-color: #fff; margin: 5% auto; padding: 40px; border: 1px solid #888; width: 90%; max-width: 800px; border-radius: 8px; position: relative; }
         .close-modal { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
@@ -159,12 +160,13 @@
            5. OPTIMIZACIÓN MOBILE & CAMBIO IMAGEN
            ========================================= */
         @media (max-width: 768px) {
-            /* CAMBIO CLAVE: Usar imagen vertical en móviles */
+            /* CAMBIO CLAVE: Usa la foto vertical (Alex_Mobile.png) en celular */
             #inicio { 
                 background-image: url('Alex_Mobile.png'); 
                 background-position: center top; 
             }
 
+            /* Menú móvil ajustado */
             .nav-links { 
                 display: none; position: absolute; top: 70px; right: 0; 
                 background: var(--primary); width: 100%; flex-direction: column; 
@@ -173,7 +175,10 @@
             .nav-links.active { display: flex; }
             .hamburger { display: block; }
             .about-grid { grid-template-columns: 1fr; }
+            
+            /* Ajustes finos */
             .logo-container img { height: 60px; }
+            .nav-links a { color: #fff; text-shadow: none; }
         }
     </style>
 </head>
@@ -358,207 +363,4 @@
                 about_title: "Professional Trajectory",
                 about_subtitle: "Doctor in Management Science | MBA",
                 about_bio: "Highly motivated executive focused on innovation and transformational leadership. With over 25 years of experience, I have consolidated a robust career in the pharmaceutical and consumer goods industries, holding senior management roles in multinational companies such as AstraZeneca, Sanofi, and FC Laboratorios.",
-                about_value: "\"I combine a deep analytical base (Business Intelligence & P&L) with soft skills from certified Coaching to not only design growth strategies but also ensure that human teams are capable of executing them with excellence.\"",
-                exp_1: "Business Unit Director (FC Laboratorios)", exp_2: "General Manager Vzla & Col (SouthGenetics)", exp_3: "Group Manager Oncology (AstraZeneca)",
-                services_title: "Business Solutions", services_sub1: "Strategic Consulting", services_sub2: "Training Programs",
-                serv_1_t: "Effective Marketing", serv_1_d: "Portfolio optimization and strategic new business development.",
-                serv_2_t: "Finance & Profitability", serv_2_d: "Marketing ROI analysis and brand financial optimization.",
-                serv_3_t: "Sales Force", serv_3_d: "Variable compensation models and Sales Force Effectiveness (SFE).",
-                course_1_t: "High Impact Sales", course_1_d: "Skills program to close deals in competitive environments.",
-                course_2_t: "Socratic Negotiation", course_2_d: "Advanced techniques for KAMs and Commercial Representatives.",
-                course_3_t: "Pharmaceutical Marketing", course_3_d: "Advanced strategy for Product Managers (PM).",
-                course_4_t: "Executive Coaching", course_4_d: "Leadership for Sales Managers and Supervisors.",
-                cases_title: "Outstanding Marketing Stories",
-                contact_title: "Let's Talk Growth",
-                form_name: "Full Name *", form_company: "Company", form_phone: "Phone *", form_email: "Email *", form_msg: "Inquiry (Max 500 words) *", btn_send: "Send Data",
-                footer_rights: "All rights reserved.",
-                read_more: "Read Story"
-            }
-        };
-
-        // DATOS DE HISTORIAS (Con soporte bilingüe en Títulos y Resumen)
-        const storiesData = [
-            { id: 13, date: "Dec 3, 2025", 
-              es: { title: "Sales Force Sizing", desc: "La estrategia que redujo costos y redefinió el tamaño ideal de una fuerza de ventas." },
-              en: { title: "Sales Force Sizing", desc: "The strategy that reduced costs and redefined the ideal sales force size." },
-              content: `<strong>Precisión Estratégica.</strong>\n\nAnalizando la Ley de Pareto, descubrí que para lanzar un nuevo producto no necesitábamos 1.000 médicos, sino los 312 que generaban el 80% del potencial.\n\nEsto redefinió el tamaño de la fuerza de ventas: bajamos de 20 a 12 visitadores necesarios. Menos costo, mayor foco, misma efectividad.\n\n<div class="quote-box">"Strategy is great. Precision is better."</div>`
-            },
-            { id: 12, date: "Nov 19, 2025", 
-              es: { title: "Síndrome del caballo muerto", desc: "Marketing con razón, no con el corazón: decisiones difíciles sobre productos." },
-              en: { title: "Dead Horse Syndrome", desc: "Marketing with reason, not heart: tough decisions on products at risk." },
-              content: `<strong>Marketing con razón, no con el corazón.</strong>\n\nLa presentación de 250mg de un antibiótico vendía <5% y estaba en riesgo de vencimiento. La inercia dictaba salvarla.\n\nEl análisis financiero fue claro: descontinuarla para proteger la rentabilidad de la marca y enfocar recursos en las presentaciones ganadoras (500mg y 750mg). La valentía gerencial es saber qué dejar de hacer.\n\n<div class="quote-box">"Strategic courage begins when we stop riding dead horses."</div>`
-            },
-            { id: 11, date: "Nov 12, 2025", 
-              es: { title: "Launching with Precision", desc: "La revelación de un Task Force Team en marketing farmacéutico." },
-              en: { title: "Launching with Precision", desc: "The revelation of a Task Force Team in pharmaceutical marketing." },
-              content: `<strong>El poder del Task Force Team.</strong>\n\nLos lanzamientos suelen fallar por falta de coordinación transversal. Marketing solo no basta.\n\nImplementé un equipo centralizado (Regulatorio, Logística, Finanzas, RRHH, Médico) con reuniones de seguimiento rigurosas. Esto permitió anticipar cuellos de botella y asegurar el tiempo de mercado.\n\n<div class="quote-box">"A true Task Force turns coordination into execution and success."</div>`
-            },
-            { id: 10, date: "Nov 5, 2025", 
-              es: { title: "Elasticidad Oculta", desc: "Inversión vs. Valor: Cuando el siguiente dólar deja de crear valor." },
-              en: { title: "Hidden Elasticity", desc: "Investment vs. Value: When the next dollar stops creating value." },
-              content: `<strong>Inversión vs Valor.</strong>\n\nEstudiando la elasticidad de la inversión, aprendí que la relación no es lineal. Existen rendimientos decrecientes: llega un punto donde invertir un dólar más en promoción ya no genera ventas adicionales (saturación).\n\nEl reto gerencial no es gastar todo el presupuesto, sino encontrar el punto óptimo de rentabilidad.\n\n<div class="quote-box">"Investment elasticity is about knowing when more becomes less."</div>`
-            },
-            { id: 9, date: "Oct 29, 2025", 
-              es: { title: "Liderazgo en Arritmias", desc: "Cómo priorizar estratégicamente en cardiología sin perder el foco clínico." },
-              en: { title: "Leadership in Arrhythmias", desc: "How to prioritize strategically in cardiology without losing clinical focus." },
-              content: `<strong>Caso Amiodarona.</strong>\n\nUn estudio (ARREST) demostró eficacia en Fibrilación Ventricular (FV), un nicho pequeño pero crítico. ¿Debíamos abandonar el foco masivo en Fibrilación Auricular (FA)?\n\nDecidimos no excluir, sino sumar. Usamos la nueva indicación como prueba de potencia para reforzar el liderazgo global como "Antiarrítmico Integral".\n\n<div class="quote-box">"Strategic focus is about owning the space that matters most."</div>`
-            },
-            { id: 8, date: "Oct 22, 2025", 
-              es: { title: "Soporte al Paciente", desc: "Más Allá del Tratamiento: El puente estratégico entre ciencia y acceso." },
-              en: { title: "Patient Support", desc: "Beyond Treatment: The strategic bridge between science and access." },
-              content: `<strong>Más allá del tratamiento.</strong>\n\nEn cáncer de pulmón, el 30% de pacientes (EGFR+) no accedía a nuestro fármaco por falta de diagnóstico. El sistema de salud no cubría las pruebas.\n\nRelanzamos el Programa de Soporte al Paciente (PSP) facilitando pruebas gratuitas, incluyendo biopsia líquida en sangre. Esto eliminó la barrera de acceso.\n\n<strong>Resultado</strong>\nConectamos ciencia con empatía, incrementando significativamente el número de pacientes tratados.\n\n<div class="quote-box">"Patient Support is the strategic bridge between science, access and trust."</div>`
-            },
-            { id: 7, date: "Oct 15, 2025", 
-              es: { title: "Epistemología y Marketing", desc: "Una experiencia reveladora en el camino doctoral." },
-              en: { title: "Epistemology and Marketing", desc: "A revealing experience on the doctoral path." },
-              content: `<strong>Una experiencia reveladora en el camino doctoral.</strong>\n\nDescubrí que el marketing es un sistema de conocimiento en evolución. La irrupción de las neurociencias y la Big Data cambiaron los paradigmas de cómo entendemos al consumidor (de racional a emocional).\n\nIntegrar la epistemología me permitió desarrollar un enfoque más crítico y estratégico, entendiendo el "por qué" detrás de los datos.\n\n<div class="quote-box">"When marketing meets epistemology, strategy becomes wisdom."</div>`
-            },
-            { id: 6, date: "Oct 8, 2025", 
-              es: { title: "Stakeholder Mapping", desc: "De la Visión al Impacto: La Brújula del Estratega de Marketing." },
-              en: { title: "Stakeholder Mapping", desc: "From Vision to Impact: The Marketing Strategist's Compass." },
-              content: `<strong>Caso Antibiótico Hospitalario (Teicoplanina).</strong>\n\nEl producto era invisible frente a la competencia genérica porque no estaba en los antibiogramas de rutina. El problema no era clínico, era sistémico.\n\nDiseñamos una estrategia multi-actor: facilitamos discos de sensibilidad a laboratorios, educamos a enfermería y activamos a infectólogos. Alinear a Marketing, Ventas y Acceso fue clave.\n\n<strong>Resultado</strong>\nSuperamos el presupuesto en un 20% y desplazamos a la competencia.\n\n<div class="quote-box">"Stakeholder Mapping is the ROI roadmap for value creation."</div>`
-            },
-            { id: 5, date: "Oct 1, 2025", 
-              es: { title: "Innovación Galénica", desc: "Precision Segmenting via Innovative Disruption: Reinventar lo conocido." },
-              en: { title: "Galenic Innovation", desc: "Precision Segmenting via Innovative Disruption: Reinventing the known." },
-              content: `<strong>Reinventar lo conocido (AINES).</strong>\n\nEn un mercado maduro de analgésicos, innovamos con una tableta bicapa (liberación inmediata + prolongada). Esto permitió reducir la dosis diaria y mejorar la tolerancia.\n\nSustituimos las presentaciones estándar (océano rojo) por esta innovación premium. Usamos demostraciones "Show & Tell" en consultorios para tangibilizar el beneficio.\n\n<strong>Resultado</strong>\nLa marca escaló del puesto 22 al 14 en el ranking nacional.\n\n<div class="quote-box">"Precision Segmenting via Innovative Disruption."</div>`
-            },
-            { id: 4, date: "Sep 24, 2025", 
-              es: { title: "FODA sin rigurosidad", desc: "Cuando la omisión estratégica puede costar millones (Caso Pseudoefedrina)." },
-              en: { title: "SWOT without rigor", desc: "When strategic omission can cost millions (Pseudoephedrine Case)." },
-              content: `<strong>Caso Pseudoefedrina: Cuando la omisión cuesta millones.</strong>\n\nEn un análisis FODA rutinario, omitimos la amenaza regulatoria sobre la pseudoefedrina. Cuando México prohibió la molécula, nuestra marca quedó fuera del mercado.\n\nLa competencia, que sí lo previó, ya tenía lista una reformulación. Perdimos market share y posicionamiento por no anticipar el entorno político-legal.\n\n<div class="quote-box">"Without context, your strategy is just a guess."</div>`
-            },
-            { id: 3, date: "Sep 17, 2025", 
-              es: { title: "Reencuadrar el mercado", desc: "Cómo redefinir el mercado objetivo puede liberar el potencial de tu marca." },
-              en: { title: "Reframing the Market", desc: "How redefining the target market can unlock your brand's potential." },
-              content: `<strong>Caso Ticagrelor: De nicho a oportunidad.</strong>\n\nTicagrelor tenía una historia comercial complicada. Competir solo contra otras marcas de la misma molécula limitaba el potencial (25k unidades vs 1M del líder Clopidogrel).\n\nDecidimos redefinir el mercado objetivo (Entry Market) incluyendo al líder. Con nueva evidencia (ACC/AHA Guidelines), posicionamos Ticagrelor como la opción superior.\n\n<strong>Lección</strong>\nPasamos de aspirar al 2.4% del share a mirar el 77.6% del mercado total.\n\n<div class="quote-box">"By framing our market landscape, we unlock our full brand potential."</div>`
-            },
-            { id: 2, date: "Sep 10, 2025", 
-              es: { title: "Umbrella Branding", desc: "Cuando el conocimiento científico se convierte en estrategia de marca." },
-              en: { title: "Umbrella Branding", desc: "When scientific knowledge becomes brand strategy." },
-              content: `<strong>Cuando el conocimiento científico se convierte en estrategia de marca.</strong>\n\nLiderando un portafolio de alergia fragmentado, usamos las nuevas guías ARIA como mapa estratégico. Cada molécula tenía su lugar en el algoritmo de tratamiento.\n\nCreamos una "Marca Paraguas" inspirada en David Aaker. Reposicionamos todo el portafolio bajo una misma narrativa científica y visual.\n\n<strong>Resultado</strong>\nLas marcas rezagadas ganaron visibilidad y el portafolio se unificó poderosamente.\n\n<div class="quote-box">"Deep scientific knowledge and strategic marketing create extraordinary results."</div>`
-            },
-            { id: 1, date: "Sep 3, 2025", 
-              es: { title: "Océanos azules en Urología", desc: "Cómo reinventamos el marketing ético en un mercado saturado." },
-              en: { title: "Blue Oceans in Urology", desc: "How we reinvented ethical marketing in a saturated market." },
-              content: `<strong>Cómo reinventamos el marketing ético en un mercado saturado.</strong>\n\nHace unos pocos años, me encontraba frente a un gran desafío: liderar el marketing ético de una empresa farmacéutica local en un mercado de urología dominado por productos maduros y genéricos de bajo costo.\n\nEl tratamiento farmacológico para la hiperplasia prostática benigna (HPB) se mantenía prácticamente igual. El 95% de las ventas se concentraban en monoterapia. La brecha entre guidelines y práctica era abismal.\n\n<strong>Redescubriendo al paciente invisible</strong>\nEncontramos un segmento olvidado: pacientes en riesgo de progresión. Decidimos contar una historia con medicina basada en evidencia.\n\n<strong>Resultados</strong>\nEn solo 18 meses, la participación de la terapia combinada pasó del 5% al 23%.\n\n<div class="quote-box">"Cuando un mercado parece saturado, no es señal de rendirse, sino de profundizar."</div>`
-            }
-        ];
-
-        let currentLang = 'es';
-
-        // --- FUNCIONALIDAD CAMBIO IDIOMA ---
-        function toggleLanguage() {
-            currentLang = currentLang === 'es' ? 'en' : 'es';
-            document.getElementById('langLabel').innerText = currentLang.toUpperCase();
-            
-            // 1. Traducir textos estáticos
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[currentLang][key]) {
-                    el.innerText = translations[currentLang][key];
-                }
-            });
-
-            // 2. Regenerar tarjetas de historias
-            renderStories();
-        }
-
-        // --- RENDERIZAR HISTORIAS ---
-        function renderStories() {
-            const container = document.getElementById('casesGrid');
-            container.innerHTML = ''; // Limpiar
-            
-            storiesData.forEach(story => {
-                const title = story[currentLang].title;
-                const desc = story[currentLang].desc;
-                const readMore = translations[currentLang].read_more;
-                
-                const html = `
-                <div class="case-card" onclick="openStory(${story.id})">
-                    <div class="case-content">
-                        <span class="case-date">${story.date}</span>
-                        <h3>${title}</h3>
-                        <p>${desc}</p>
-                        <span class="read-more">${readMore} &rarr;</span>
-                    </div>
-                </div>`;
-                container.innerHTML += html;
-            });
-        }
-
-        // --- MENÚ MÓVIL Y EFECTO SCROLL ---
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        const header = document.querySelector('.header');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        
-        hamburger.addEventListener('click', () => {
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.display = 'none';
-            } else {
-                navLinks.style.display = 'flex';
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '70px';
-                navLinks.style.right = '0';
-                navLinks.style.background = '#0e2a47';
-                navLinks.style.width = '100%';
-                navLinks.style.padding = '20px';
-                navLinks.style.textAlign = 'center';
-                navLinks.style.marginRight = '0'; // Quitar margen en mobile
-            }
-        });
-
-        // --- MODAL ---
-        const modal = document.getElementById("storyModal");
-        const modalBody = document.getElementById("modalBody");
-        const closeBtn = document.getElementsByClassName("close-modal")[0];
-
-        function openStory(id) {
-            const story = storiesData.find(s => s.id === id);
-            if(story) {
-                let htmlContent = `
-                    <h2 style="color:#0e2a47">${story[currentLang].title}</h2>
-                    <span style="color:#888; display:block; margin-bottom:20px;">${story.date}</span>
-                    <div class="modal-body">${story.content}</div>
-                `;
-                modalBody.innerHTML = htmlContent;
-                modal.style.display = "block";
-                document.body.style.overflow = "hidden";
-            }
-        }
-
-        closeBtn.onclick = function() { modal.style.display = "none"; document.body.style.overflow = "auto"; }
-        window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; document.body.style.overflow = "auto"; } }
-
-        // --- INICIALIZAR ---
-        document.addEventListener('DOMContentLoaded', renderStories);
-
-        // --- CONTACTO ---
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const nombre = document.getElementById('nombre').value;
-            const empresa = document.getElementById('empresa').value;
-            const email = document.getElementById('email').value;
-            const telefono = document.getElementById('telefono').value;
-            const consulta = document.getElementById('consulta').value;
-
-            alert(`Gracias/Thank you ${nombre}. Hemos recibido tu mensaje/We received your message.`);
-            
-            const subject = `Consulta Web: ${nombre}`;
-            const body = `Nombre: ${nombre}\nEmpresa: ${empresa}\nTel: ${telefono}\nEmail: ${email}\n\nConsulta:\n${consulta}`;
-            window.location.href = `mailto:alexanderacostaconsulting@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            contactForm.reset();
-        });
-    </script>
-</body>
-</html>
+                about
