@@ -77,7 +77,8 @@
            ========================================= */
         #inicio {
             height: 100vh;
-            background-image: url('Alex%202.png'); 
+            /* SECCIÓN CORREGIDA: Uso comillas simples para soportar el espacio */
+            background-image: url('Alex 2.png'); 
             background-size: cover; 
             background-position: center;
             background-repeat: no-repeat;
@@ -181,6 +182,7 @@
            ========================================= */
         @media (max-width: 768px) {
             #inicio { 
+                /* Se mantiene la imagen específica para móvil */
                 background-image: url('Alex_Mobile.png'); 
                 background-size: contain; 
                 background-repeat: no-repeat;
@@ -383,7 +385,7 @@
         const translations = {
             es: {
                 menu_home: "Inicio", 
-                menu_about: "Acerca de mí", // CAMBIO AQUÍ
+                menu_about: "Acerca de mí",
                 menu_services: "Servicios", menu_cases: "Casos de Éxito", menu_contact: "Contacto",
                 btn_schedule: "Agenda una Reunión",
                 about_title: "Trayectoria Profesional",
@@ -416,10 +418,10 @@
             },
             en: {
                 menu_home: "Home", 
-                menu_about: "About me", // CAMBIO AQUÍ
+                menu_about: "About me",
                 menu_services: "Services", menu_cases: "Success Stories", menu_contact: "Contact",
                 btn_schedule: "Schedule a Meeting",
-                about_title: "Professional Career", // CAMBIO AQUÍ
+                about_title: "Professional Career",
                 about_subtitle: "Doctor in Management Science | MBA",
                 bio_p1: "I am an executive leader and consultant in commercial strategy, marketing, and business development with over 25 years of experience in the pharmaceutical, biotechnology, and healthcare industries. I have held leadership roles at <b>Sanofi, AstraZeneca, SouthGenetics, and FC Laboratorios</b>, driving growth, leading cross-functional teams, and managing strategic launches in ethical lines, specialties, oncology, and OTC.",
                 bio_p2: "I combine strategic vision, advanced analytics, and emerging technologies—including <b>Business Intelligence, Power BI, and Artificial Intelligence</b>—to transform market insights into sustainable growth.",
