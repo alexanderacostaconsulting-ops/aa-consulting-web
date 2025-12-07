@@ -17,7 +17,8 @@
             --text-menu: #f4f4f4; 
             --text-dark: #333;
             --bg-light: #fff;
-            --bg-gray-card: #f8f9fa; /* Nuevo gris claro para tarjetas */
+            --bg-off: #f4f6f8;
+            --bg-gray-card: #f8f9fa;
             --font: 'Montserrat', sans-serif;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
@@ -109,29 +110,42 @@
         .section-title { text-align: center; font-size: 2.2rem; color: var(--primary); margin-bottom: 50px; position: relative; }
         .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--gold); margin: 15px auto 0; }
 
-        #acerca { background: var(--bg-light); }
-        .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; align-items: center; }
-        .about-img img { border-radius: 8px; box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
-        .value-prop { border-left: 5px solid var(--gold); padding-left: 20px; margin: 25px 0; font-style: italic; color: #555; font-weight: 500; background: #fafafa; padding: 15px; }
+        /* NOTAS AL PIE DE SECCIÓN */
+        .section-footer-note {
+            text-align: right;
+            margin-top: 40px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .section-footer-note a { color: #0077b5; font-size: 1.5rem; transition: 0.3s; }
+        .section-footer-note a:hover { color: var(--primary); transform: scale(1.1); }
 
-        /* --- CAMBIO: SECCIÓN SERVICIOS --- */
-        #servicios { background: #fff; /* Fondo blanco para contraste */ }
+        /* Acerca de */
+        #acerca { background: var(--bg-light); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; align-items: start; }
+        .about-img img { border-radius: 8px; box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
         
+        /* Estilo nuevo para el texto bio */
+        .bio-block { margin-bottom: 20px; }
+        .bio-credentials { background: var(--bg-off); padding: 20px; border-radius: 8px; margin-top: 20px; border-left: 4px solid var(--gold); }
+        .bio-credentials li { list-style: none; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-weight: 500; }
+
+        /* Servicios */
+        #servicios { background: #fff; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        
-        /* CAMBIO: Tarjetas en Gris Claro */
         .service-card { 
-            background: var(--bg-gray-card); /* Gris Claro */
-            padding: 30px; 
-            border-radius: 8px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
-            text-align: center; 
-            transition: 0.3s;
-            border: 1px solid #eee; /* Borde sutil */
+            background: var(--bg-gray-card); padding: 30px; border-radius: 8px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; transition: 0.3s; border: 1px solid #eee;
         }
         .service-card:hover { transform: translateY(-5px); border-bottom: 4px solid var(--gold); background: #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .service-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
 
+        /* Casos de Éxito */
         #casos { background: var(--bg-light); }
         .cases-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
         .case-card { background: #fff; border: 1px solid #eee; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
@@ -142,6 +156,7 @@
         .case-card p { font-size: 0.9rem; color: #666; margin-bottom: 15px; }
         .read-more { color: var(--gold); font-weight: 600; font-size: 0.9rem; }
 
+        /* Contacto */
         #contacto { background: var(--primary); color: #fff; text-align: center; }
         #contacto .section-title { color: #fff; }
         .form-wrapper { max-width: 700px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 8px; color: #333; text-align: left; }
@@ -163,10 +178,9 @@
         .modal-body { margin-top: 20px; white-space: pre-line; text-align: left; color: #333; }
 
         /* =========================================
-           5. OPTIMIZACIÓN MOBILE & CAMBIO IMAGEN
+           5. OPTIMIZACIÓN MOBILE
            ========================================= */
         @media (max-width: 768px) {
-            /* CAMBIO: Usa la foto vertical en celular */
             #inicio { 
                 background-image: url('Alex_Mobile.png'); 
                 background-size: contain; 
@@ -175,15 +189,12 @@
                 background-color: var(--primary); 
                 height: 100vh;
                 justify-content: flex-end; 
-                
-                /* CAMBIO CLAVE: Aumentado el padding inferior a 130px 
-                   Esto empuja el botón "Agenda" hacia arriba para que se vea sin scroll */
-                padding-bottom: 130px; 
+                padding-bottom: 20px;
             }
 
             #inicio::before { display: none; }
 
-            /* CAJA FLOTANTE PARA EL BOTÓN EN MÓVIL */
+            /* CAJA FLOTANTE MÓVIL - SUBIDA MAS ARRIBA */
             .hero-content {
                 background: rgba(14, 42, 71, 0.95); 
                 padding: 20px;
@@ -193,9 +204,9 @@
                 box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
                 border-top: 2px solid var(--gold);
                 
-                /* Aseguramos que la caja quede pegada abajo pero visible */
                 position: absolute;
-                bottom: 0;
+                /* CAMBIO: Se sube 60px desde el fondo para evitar barra del navegador móvil */
+                bottom: 60px; 
                 left: 0;
             }
 
@@ -209,6 +220,7 @@
             .about-grid { grid-template-columns: 1fr; }
             .logo-container img { height: 50px; margin-left: 10px; }
             .nav-links a { color: #fff; text-shadow: none; }
+            .section-footer-note { text-align: center; justify-content: center; }
         }
     </style>
 </head>
@@ -220,7 +232,7 @@
         </div>
         <nav class="nav-links">
             <a href="#inicio" data-i18n="menu_home">Inicio</a>
-            <a href="#acerca" data-i18n="menu_about">Acerca de</a>
+            <a href="#acerca" data-i18n="menu_about">Trayectoria Profesional</a>
             <a href="#servicios" data-i18n="menu_services">Servicios</a>
             <a href="#casos" data-i18n="menu_cases">Casos de Éxito</a>
             <a href="#contacto" data-i18n="menu_contact">Contacto</a>
@@ -233,7 +245,7 @@
 
     <section id="inicio">
         <div class="hero-content">
-            <a href="#contacto" class="btn-main" data-i18n="btn_schedule">Agenda una Sesión</a>
+            <a href="#contacto" class="btn-main" data-i18n="btn_schedule">Agenda una Reunión</a>
             <div class="hero-social">
                 <a href="https://wa.me/584141404018" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 <a href="https://linkedin.com/in/alexander-acosta-65489a21" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -249,17 +261,17 @@
                 <img src="Alex 1.jpeg" alt="Foto Alexander Acosta">
             </div>
             <div class="about-text">
-                <h3 data-i18n="about_subtitle">Doctor en Ciencias Gerenciales | MBA</h3>
-                <p data-i18n="about_bio">Ejecutivo altamente motivado con un enfoque en la innovación y el liderazgo transformacional. Con más de 25 años de experiencia, he consolidado una carrera robusta en la industria farmacéutica y de consumo masivo, ocupando roles de alta dirección en empresas multinacionales como <strong>AstraZeneca, Sanofi y FC Laboratorios</strong>.</p>
-                
-                <div class="value-prop" data-i18n="about_value">
-                    "Combino una profunda base analítica (Business Intelligence & P&L) con habilidades blandas de Coaching certificado para no solo diseñar estrategias de crecimiento, sino garantizar que los equipos humanos sean capaces de ejecutarlas con excelencia."
+                <div class="bio-block">
+                    <p data-i18n="bio_p1">Soy un líder ejecutivo y consultor en estrategia comercial, marketing y desarrollo de negocios con más de 25 años de experiencia en la industria farmacéutica, biotecnología y salud. He ocupado roles directivos en <strong>Sanofi, AstraZeneca, SouthGenetics y FC Laboratorios</strong>, liderando crecimiento, equipos multifuncionales y lanzamientos estratégicos en líneas éticas, especialidades, oncología y OTC.</p>
                 </div>
-
-                <ul style="margin-top:20px; list-style:none;">
-                    <li><i class="fas fa-check-circle" style="color:var(--gold)"></i> <span data-i18n="exp_1">Director de Unidades de Negocio (FC Laboratorios)</span></li>
-                    <li><i class="fas fa-check-circle" style="color:var(--gold)"></i> <span data-i18n="exp_2">Gerente General Vzla & Col (SouthGenetics)</span></li>
-                    <li><i class="fas fa-check-circle" style="color:var(--gold)"></i> <span data-i18n="exp_3">Gerente de Grupo Oncología (AstraZeneca)</span></li>
+                <div class="bio-block">
+                    <p data-i18n="bio_p2">Combino visión estratégica, analítica avanzada y tecnologías emergentes —incluyendo <strong>Business Intelligence, Power BI e Inteligencia Artificial</strong>— para transformar insights del mercado en crecimiento sostenible.</p>
+                </div>
+                
+                <ul class="bio-credentials">
+                    <li><i class="fas fa-check-circle" style="color:var(--gold)"></i> <span data-i18n="cred_1">Coach Ejecutivo Certificado ICC (UK)</span></li>
+                    <li><i class="fas fa-check-circle" style="color:var(--gold)"></i> <span data-i18n="cred_2">Doctor en Ciencias Gerenciales & MBA</span></li>
+                    <li><i class="fas fa-check-circle" style="color:var(--gold)"></i> <span data-i18n="cred_3">Conferencista en liderazgo y estrategia</span></li>
                 </ul>
             </div>
         </div>
@@ -306,12 +318,19 @@
                 <p data-i18n="course_4_d">Liderazgo para Gerentes de Ventas y Supervisores.</p>
             </div>
         </div>
+
+        <p class="section-footer-note" data-i18n="services_note">* Adaptamos consultorías y capacitaciones a la medida de tus necesidades</p>
     </section>
 
     <section id="casos">
         <h2 class="section-title" data-i18n="cases_title">Outstanding Marketing Stories</h2>
         <div class="cases-grid" id="casesGrid">
             </div>
+        
+        <div class="section-footer-note">
+            <span data-i18n="cases_note">* Artículos completos en mi cuenta de LinkedIn</span>
+            <a href="https://linkedin.com/in/alexander-acosta-65489a21" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
     </section>
 
     <section id="contacto">
@@ -366,13 +385,18 @@
         // --- 1. TRADUCCIONES ---
         const translations = {
             es: {
-                menu_home: "Inicio", menu_about: "Acerca de", menu_services: "Servicios", menu_cases: "Casos de Éxito", menu_contact: "Contacto",
-                btn_schedule: "Agenda una Sesión",
+                menu_home: "Inicio", menu_about: "Trayectoria Profesional", menu_services: "Servicios", menu_cases: "Casos de Éxito", menu_contact: "Contacto",
+                btn_schedule: "Agenda una Reunión",
                 about_title: "Trayectoria Profesional",
                 about_subtitle: "Doctor en Ciencias Gerenciales | MBA",
-                about_bio: "Ejecutivo altamente motivado con un enfoque en la innovación y el liderazgo transformacional. Con más de 25 años de experiencia, he consolidado una carrera robusta en la industria farmacéutica y de consumo masivo, ocupando roles de alta dirección en empresas multinacionales como AstraZeneca, Sanofi y FC Laboratorios.",
-                about_value: "\"Combino una profunda base analítica (Business Intelligence & P&L) con habilidades blandas de Coaching certificado para no solo diseñar estrategias de crecimiento, sino garantizar que los equipos humanos sean capaces de ejecutarlas con excelencia.\"",
+                bio_p1: "Soy un líder ejecutivo y consultor en estrategia comercial, marketing y desarrollo de negocios con más de 25 años de experiencia en la industria farmacéutica, biotecnología y salud. He ocupado roles directivos en <strong>Sanofi, AstraZeneca, SouthGenetics y FC Laboratorios</strong>, liderando crecimiento, equipos multifuncionales y lanzamientos estratégicos en líneas éticas, especialidades, oncología y OTC.",
+                bio_p2: "Combino visión estratégica, analítica avanzada y tecnologías emergentes —incluyendo <strong>Business Intelligence, Power BI e Inteligencia Artificial</strong>— para transformar insights del mercado en crecimiento sostenible.",
+                cred_1: "Coach Ejecutivo Certificado ICC (UK)",
+                cred_2: "Doctor en Ciencias Gerenciales & MBA",
+                cred_3: "Conferencista en liderazgo y estrategia comercial",
+                
                 exp_1: "Director de Unidades de Negocio (FC Laboratorios)", exp_2: "Gerente General Vzla & Col (SouthGenetics)", exp_3: "Gerente de Grupo Oncología (AstraZeneca)",
+                
                 services_title: "Soluciones Empresariales", services_sub1: "Consultoría Estratégica", services_sub2: "Programas de Formación",
                 serv_1_t: "Marketing Efectivo", serv_1_d: "Optimización de portafolio y desarrollo estratégico de nuevos negocios.",
                 serv_2_t: "Finanzas & Rentabilidad", serv_2_d: "Análisis de ROI en marketing y optimización financiera de marcas.",
@@ -381,20 +405,29 @@
                 course_2_t: "Negociación Socrática", course_2_d: "Técnicas avanzadas para KAM y Representantes Comerciales.",
                 course_3_t: "Mercadeo Farmacéutico", course_3_d: "Estrategia avanzada para Gerentes de Producto (PM).",
                 course_4_t: "Coaching Ejecutivo", course_4_d: "Liderazgo para Gerentes de Ventas y Supervisores.",
+                services_note: "* Adaptamos consultorías y capacitaciones a la medida de tus necesidades",
+                
                 cases_title: "Outstanding Marketing Stories",
+                cases_note: "* Artículos completos en mi cuenta de LinkedIn",
+                
                 contact_title: "Hablemos de Crecimiento",
                 form_name: "Nombre Completo *", form_company: "Empresa", form_phone: "Teléfono *", form_email: "Email *", form_msg: "Consulta (Máx 500 palabras) *", btn_send: "Enviar Datos",
                 footer_rights: "Todos los derechos reservados.",
                 read_more: "Leer Historia"
             },
             en: {
-                menu_home: "Home", menu_about: "About", menu_services: "Services", menu_cases: "Success Stories", menu_contact: "Contact",
-                btn_schedule: "Schedule a Session",
-                about_title: "Professional Trajectory",
+                menu_home: "Home", menu_about: "Professional Career", menu_services: "Services", menu_cases: "Success Stories", menu_contact: "Contact",
+                btn_schedule: "Schedule a Meeting",
+                about_title: "Professional Career",
                 about_subtitle: "Doctor in Management Science | MBA",
-                about_bio: "Highly motivated executive focused on innovation and transformational leadership. With over 25 years of experience, I have consolidated a robust career in the pharmaceutical and consumer goods industries, holding senior management roles in multinational companies such as AstraZeneca, Sanofi, and FC Laboratorios.",
-                about_value: "\"I combine a deep analytical base (Business Intelligence & P&L) with soft skills from certified Coaching to not only design growth strategies but also ensure that human teams are capable of executing them with excellence.\"",
+                bio_p1: "I am an executive leader and consultant in commercial strategy, marketing, and business development with over 25 years of experience in the pharmaceutical, biotechnology, and healthcare industries. I have held leadership roles at <strong>Sanofi, AstraZeneca, SouthGenetics, and FC Laboratorios</strong>, driving growth, leading cross-functional teams, and managing strategic launches in ethical lines, specialties, oncology, and OTC.",
+                bio_p2: "I combine strategic vision, advanced analytics, and emerging technologies—including <strong>Business Intelligence, Power BI, and Artificial Intelligence</strong>—to transform market insights into sustainable growth.",
+                cred_1: "Certified Executive Coach ICC (UK)",
+                cred_2: "Doctor in Management Sciences & MBA",
+                cred_3: "Speaker on leadership and commercial strategy",
+                
                 exp_1: "Business Unit Director (FC Laboratorios)", exp_2: "General Manager Vzla & Col (SouthGenetics)", exp_3: "Group Manager Oncology (AstraZeneca)",
+                
                 services_title: "Business Solutions", services_sub1: "Strategic Consulting", services_sub2: "Training Programs",
                 serv_1_t: "Effective Marketing", serv_1_d: "Portfolio optimization and strategic new business development.",
                 serv_2_t: "Finance & Profitability", serv_2_d: "Marketing ROI analysis and brand financial optimization.",
@@ -403,7 +436,11 @@
                 course_2_t: "Socratic Negotiation", course_2_d: "Advanced techniques for KAMs and Commercial Representatives.",
                 course_3_t: "Pharmaceutical Marketing", course_3_d: "Advanced strategy for Product Managers (PM).",
                 course_4_t: "Executive Coaching", course_4_d: "Leadership for Sales Managers and Supervisors.",
+                services_note: "* We adapt consulting and training to your specific needs",
+                
                 cases_title: "Outstanding Marketing Stories",
+                cases_note: "* Read full articles on my LinkedIn profile",
+                
                 contact_title: "Let's Talk Growth",
                 form_name: "Full Name *", form_company: "Company", form_phone: "Phone *", form_email: "Email *", form_msg: "Inquiry (Max 500 words) *", btn_send: "Send Data",
                 footer_rights: "All rights reserved.",
@@ -490,7 +527,7 @@
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[currentLang][key]) {
-                    el.innerText = translations[currentLang][key];
+                    el.innerHTML = translations[currentLang][key];
                 }
             });
 
