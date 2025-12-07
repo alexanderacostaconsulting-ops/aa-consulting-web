@@ -9,26 +9,28 @@
     
     <style>
         /* =========================================
-           ESTILOS (DISEÑO) INTEGRADOS
+           ESTILOS (DISEÑO)
            ========================================= */
         :root {
             --primary: #0e2a47; /* Azul Navy */
             --gold: #bfa15f;    /* Dorado Elegante */
-            --text: #333;
+            --text-gray: #e0e0e0; /* Gris Claro para menú */
+            --text-dark: #333;
             --bg-light: #fff;
             --bg-off: #f4f6f8;
             --font: 'Montserrat', sans-serif;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: var(--font); color: var(--text); line-height: 1.6; }
+        body { font-family: var(--font); color: var(--text-dark); line-height: 1.6; }
         a { text-decoration:none; color:inherit; transition:0.3s; }
         img { max-width: 100%; display: block; }
 
-        /* HEADER (CAMBIO: Transparente al inicio) */
+        /* HEADER */
         .header {
-            background: transparent; /* Se eliminó la franja azul solida */
-            padding: 20px 5%; 
+            background: transparent; 
+            /* CORRECCIÓN 1: Menos padding arriba para subir todo */
+            padding: 5px 5%; 
             position: fixed; 
             width: 100%; 
             top: 0; 
@@ -36,23 +38,51 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            transition: all 0.4s ease; /* Transición suave */
+            transition: all 0.4s ease;
         }
 
-        /* Clase que se agrega automáticamente al bajar con el mouse */
+        /* Fondo oscuro al bajar para que se lea el menú */
         .header.scrolled {
-            background: var(--primary); /* Se vuelve azul al bajar */
+            background: var(--primary); 
             padding: 10px 5%;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        /* LOGO GRANDE */
-        .logo-container img { height: 90px; filter: brightness(0) invert(1); transition: 0.3s; }
-        .header.scrolled .logo-container img { height: 70px; } /* Se achica un poco al bajar */
+        /* LOGO */
+        .logo-container img { height: 80px; filter: brightness(0) invert(1); transition: 0.3s; }
+        .header.scrolled .logo-container img { height: 60px; } 
         
-        .nav-links { display: flex; gap: 20px; }
-        .nav-links a { color: #fff; text-transform: uppercase; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        /* MENU DE NAVEGACIÓN */
+        .nav-links { 
+            display: flex; 
+            gap: 25px; 
+            align-items: center;
+            /* CORRECCIÓN 2: Margen derecho grande para no tapar el logo de la imagen */
+            margin-right: 150px; 
+        }
+
+        .nav-links a { 
+            /* CORRECCIÓN 3: Color Gris Claro */
+            color: var(--text-gray); 
+            text-transform: uppercase; 
+            font-size: 0.8rem; 
+            font-weight: 600; 
+            letter-spacing: 1px; 
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8); /* Sombra para legibilidad */
+        }
         .nav-links a:hover { color: var(--gold); }
+
+        /* BOTÓN DE IDIOMA */
+        .lang-btn {
+            border: 1px solid var(--gold);
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: var(--gold) !important;
+            font-size: 0.75rem !important;
+            cursor: pointer;
+        }
+        .lang-btn:hover { background: var(--gold); color: var(--primary) !important; }
+
         .hamburger { display: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
 
         /* HERO SECTION (BANNER) */
@@ -60,7 +90,7 @@
             height: 100vh;
             background: url('Alex 2.png'); 
             background-size: cover; 
-            background-position: center;
+            background-position: center; /* Centrado para PC */
             background-repeat: no-repeat;
             display: flex; 
             flex-direction: column;
@@ -68,11 +98,11 @@
             justify-content: flex-end; 
             text-align: center; 
             color: #fff;
-            padding-bottom: 40px; /* Margen inferior */
+            padding-bottom: 40px; 
             position: relative;
         }
         
-        /* Degradado inferior suave para resaltar botón e iconos */
+        /* Degradado inferior */
         #inicio::before {
             content: '';
             position: absolute;
@@ -175,14 +205,38 @@
         .close-modal:hover { color: #000; }
         .modal-body { margin-top: 20px; white-space: pre-line; text-align: left; color: #333; }
 
-        /* RESPONSIVE */
+        /* =========================================
+           CORRECCIÓN 4: OPTIMIZACIÓN MOBILE
+           ========================================= */
         @media (max-width: 768px) {
-            .nav-links { display: none; position: absolute; top: 70px; right: 0; background: var(--primary); width: 100%; flex-direction: column; padding: 20px; text-align: center; }
+            /* Menú Mobile */
+            .nav-links { 
+                display: none; 
+                position: absolute; 
+                top: 70px; 
+                right: 0; 
+                background: var(--primary); 
+                width: 100%; 
+                flex-direction: column; 
+                padding: 20px; 
+                text-align: center; 
+                margin-right: 0; /* Reset del margen en mobile */
+            }
             .nav-links.active { display: flex; }
             .hamburger { display: block; }
+            
+            /* Ajuste Banner en Mobile */
+            #inicio { 
+                background-position: 70% center; /* Enfoca mejor al sujeto si la foto es ancha */
+                justify-content: center; 
+                padding-top: 80px; 
+                padding-bottom: 20px; 
+            }
+            
+            /* Ajuste de columnas */
             .about-grid { grid-template-columns: 1fr; }
-            /* Ajuste móvil */
-            #inicio { justify-content: center; padding-top: 100px; padding-bottom: 20px; }
+            
+            /* Logo más pequeño en celular */
             .logo-container img { height: 60px; }
         }
     </style>
@@ -199,6 +253,7 @@
             <a href="#servicios">Servicios</a>
             <a href="#casos">Casos de Éxito</a>
             <a href="#contacto">Contacto</a>
+            <a href="#" class="lang-btn" onclick="alert('English version coming soon!')"><i class="fas fa-globe"></i> EN</a>
         </nav>
         <div class="hamburger"><i class="fas fa-bars"></i></div>
     </header>
@@ -446,7 +501,6 @@
         const navLinks = document.querySelector('.nav-links');
         const header = document.querySelector('.header');
 
-        // Efecto de fondo azul al bajar
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
@@ -553,4 +607,32 @@
             },
             13: {
                 title: "Sales Force Sizing",
-                date: "Diciembre 3, 2025
+                date: "Diciembre 3, 2025",
+                content: `<strong>Precisión Estratégica.</strong>\n\nAnalizando la Ley de Pareto, descubrí que para lanzar un nuevo producto no necesitábamos 1.000 médicos, sino los 312 que generaban el 80% del potencial.\n\nEsto redefinió el tamaño de la fuerza de ventas: bajamos de 20 a 12 visitadores necesarios. Menos costo, mayor foco, misma efectividad.\n\n<div class="quote-box">"Strategy is great. Precision is better."</div>`
+            }
+        };
+
+        // 4. MODAL
+        const modal = document.getElementById("storyModal");
+        const modalBody = document.getElementById("modalBody");
+        const closeBtn = document.getElementsByClassName("close-modal")[0];
+
+        function openStory(id) {
+            const story = stories[id];
+            if(story) {
+                let htmlContent = `
+                    <h2 style="color:#0e2a47">${story.title}</h2>
+                    <span style="color:#888; display:block; margin-bottom:20px;">${story.date}</span>
+                    <div class="modal-body">${story.content}</div>
+                `;
+                modalBody.innerHTML = htmlContent;
+                modal.style.display = "block";
+                document.body.style.overflow = "hidden";
+            }
+        }
+
+        closeBtn.onclick = function() { modal.style.display = "none"; document.body.style.overflow = "auto"; }
+        window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; document.body.style.overflow = "auto"; } }
+    </script>
+</body>
+</html>
