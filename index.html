@@ -17,7 +17,7 @@
             --text-menu: #f4f4f4; 
             --text-dark: #333;
             --bg-light: #fff;
-            --bg-off: #f4f6f8;
+            --bg-gray-card: #f8f9fa; /* Nuevo gris claro para tarjetas */
             --font: 'Montserrat', sans-serif;
         }
         * { margin:0; padding:0; box-sizing:border-box; }
@@ -114,10 +114,22 @@
         .about-img img { border-radius: 8px; box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
         .value-prop { border-left: 5px solid var(--gold); padding-left: 20px; margin: 25px 0; font-style: italic; color: #555; font-weight: 500; background: #fafafa; padding: 15px; }
 
-        #servicios { background: var(--bg-off); }
+        /* --- CAMBIO: SECCIÓN SERVICIOS --- */
+        #servicios { background: #fff; /* Fondo blanco para contraste */ }
+        
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .service-card { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; transition: 0.3s; }
-        .service-card:hover { transform: translateY(-5px); border-bottom: 4px solid var(--gold); }
+        
+        /* CAMBIO: Tarjetas en Gris Claro */
+        .service-card { 
+            background: var(--bg-gray-card); /* Gris Claro */
+            padding: 30px; 
+            border-radius: 8px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+            text-align: center; 
+            transition: 0.3s;
+            border: 1px solid #eee; /* Borde sutil */
+        }
+        .service-card:hover { transform: translateY(-5px); border-bottom: 4px solid var(--gold); background: #fff; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .service-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; }
 
         #casos { background: var(--bg-light); }
@@ -154,50 +166,47 @@
            5. OPTIMIZACIÓN MOBILE & CAMBIO IMAGEN
            ========================================= */
         @media (max-width: 768px) {
-            /* CAMBIO CRÍTICO: Fondo Azul + Imagen Contenida */
+            /* CAMBIO: Usa la foto vertical en celular */
             #inicio { 
                 background-image: url('Alex_Mobile.png'); 
-                
-                /* Esto asegura que la foto se vea COMPLETA (Logo incluido) */
                 background-size: contain; 
                 background-repeat: no-repeat;
                 background-position: top center;
-                
-                /* El resto de la pantalla se llena de azul corporativo */
                 background-color: var(--primary); 
-                
-                /* Ajuste de altura */
                 height: 100vh;
-                justify-content: flex-end; /* Empuja el contenido abajo */
-                padding-bottom: 20px;
+                justify-content: flex-end; 
+                
+                /* CAMBIO CLAVE: Aumentado el padding inferior a 130px 
+                   Esto empuja el botón "Agenda" hacia arriba para que se vea sin scroll */
+                padding-bottom: 130px; 
             }
 
-            /* Sombra inferior eliminada en móvil porque usamos fondo sólido */
             #inicio::before { display: none; }
 
             /* CAJA FLOTANTE PARA EL BOTÓN EN MÓVIL */
-            /* Esto evita que el botón se pierda o tape la foto */
             .hero-content {
-                background: rgba(14, 42, 71, 0.9); /* Caja azul semi-transparente */
+                background: rgba(14, 42, 71, 0.95); 
                 padding: 20px;
-                border-radius: 15px 15px 0 0; /* Bordes redondeados arriba */
+                border-radius: 15px 15px 0 0; 
                 width: 100%;
                 margin-bottom: 0;
                 box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
                 border-top: 2px solid var(--gold);
+                
+                /* Aseguramos que la caja quede pegada abajo pero visible */
+                position: absolute;
+                bottom: 0;
+                left: 0;
             }
 
-            /* Menú móvil */
             .nav-links { 
                 display: none; position: absolute; top: 70px; right: 0; 
                 background: var(--primary); width: 100%; flex-direction: column; 
                 padding: 20px; text-align: center; margin-right: 0; 
-                border-bottom: 2px solid var(--gold);
             }
             .nav-links.active { display: flex; }
             .hamburger { display: block; margin-right: 15px; }
             .about-grid { grid-template-columns: 1fr; }
-            
             .logo-container img { height: 50px; margin-left: 10px; }
             .nav-links a { color: #fff; text-shadow: none; }
         }
@@ -570,7 +579,7 @@
             const telefono = document.getElementById('telefono').value;
             const consulta = document.getElementById('consulta').value;
 
-            alert(`Gracias ${nombre}. Hemos recibido tu mensaje.`);
+            alert(`Gracias/Thank you ${nombre}. Hemos recibido tu mensaje/We received your message.`);
             
             const subject = `Consulta Web: ${nombre}`;
             const body = `Nombre: ${nombre}\nEmpresa: ${empresa}\nTel: ${telefono}\nEmail: ${email}\n\nConsulta:\n${consulta}`;
