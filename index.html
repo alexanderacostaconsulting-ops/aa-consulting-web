@@ -110,10 +110,11 @@
         .section-title { text-align: center; font-size: 2.2rem; color: var(--primary); margin-bottom: 50px; position: relative; }
         .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--gold); margin: 15px auto 0; }
 
-        /* NOTAS AL PIE DE SECCIÓN */
+        /* NOTAS AL PIE DE SECCIÓN (AJUSTADO: Menos margen superior) */
         .section-footer-note {
             text-align: right;
-            margin-top: 40px;
+            /* CAMBIO: Reducido de 40px a 15px para subir el texto */
+            margin-top: 15px; 
             font-style: italic;
             color: #666;
             font-size: 0.95rem;
@@ -130,7 +131,6 @@
         .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; align-items: start; }
         .about-img img { border-radius: 8px; box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
         
-        /* Estilo nuevo para el texto bio */
         .bio-block { margin-bottom: 20px; }
         .bio-credentials { background: var(--bg-off); padding: 20px; border-radius: 8px; margin-top: 20px; border-left: 4px solid var(--gold); }
         .bio-credentials li { list-style: none; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-weight: 500; }
@@ -194,7 +194,6 @@
 
             #inicio::before { display: none; }
 
-            /* CAJA FLOTANTE MÓVIL - SUBIDA MAS ARRIBA */
             .hero-content {
                 background: rgba(14, 42, 71, 0.95); 
                 padding: 20px;
@@ -205,8 +204,7 @@
                 border-top: 2px solid var(--gold);
                 
                 position: absolute;
-                /* CAMBIO: Se sube 60px desde el fondo para evitar barra del navegador móvil */
-                bottom: 60px; 
+                bottom: 60px; /* Elevado para evitar barra de navegación */
                 left: 0;
             }
 
@@ -527,7 +525,7 @@
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[currentLang][key]) {
-                    el.innerHTML = translations[currentLang][key];
+                    el.innerText = translations[currentLang][key];
                 }
             });
 
