@@ -14,7 +14,7 @@
         :root {
             --primary: #0e2a47; 
             --gold: #bfa15f;    
-            --text-menu: #f4f4f4; /* Gris casi blanco para el menú */
+            --text-menu: #f4f4f4; 
             --text-dark: #333;
             --bg-light: #fff;
             --bg-off: #f4f6f8;
@@ -42,30 +42,26 @@
             transition: all 0.4s ease;
         }
         
-        /* Fondo azul sólido al bajar */
         .header.scrolled {
             background: var(--primary); 
             padding: 10px 5%;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        .logo-container img { height: 70px; filter: brightness(0) invert(1); transition: 0.3s; }
+        .logo-container img { height: 80px; filter: brightness(0) invert(1); transition: 0.3s; }
         .header.scrolled .logo-container img { height: 60px; } 
         
-        /* MENÚ */
         .nav-links { 
             display: flex; gap: 25px; align-items: center;
-            /* IMPORTANTE: Margen derecho grande para no tapar el logo de la imagen */
             margin-right: 200px; 
         }
         .nav-links a { 
-            color: var(--text-menu); /* Gris Claro */
+            color: var(--text-menu);
             text-transform: uppercase; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; 
-            text-shadow: 0 1px 3px rgba(0,0,0,0.9); /* Sombra fuerte para leerse sobre blanco */
+            text-shadow: 0 1px 3px rgba(0,0,0,0.9);
         }
         .nav-links a:hover { color: var(--gold); }
 
-        /* BOTÓN IDIOMA */
         .lang-btn {
             border: 1px solid var(--gold); padding: 5px 10px; border-radius: 4px;
             color: var(--gold) !important; font-size: 0.75rem !important; cursor: pointer; display:flex; gap:5px;
@@ -80,7 +76,6 @@
            ========================================= */
         #inicio {
             height: 100vh;
-            /* FOTO HORIZONTAL (ESCRITORIO) */
             background-image: url('Alex 2.png'); 
             background-size: cover; 
             background-position: center;
@@ -89,7 +84,6 @@
             text-align: center; color: #fff; padding-bottom: 40px; position: relative;
         }
         
-        /* Sombra inferior suave */
         #inicio::before {
             content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 40%; 
             background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); z-index: 1;
@@ -160,24 +154,51 @@
            5. OPTIMIZACIÓN MOBILE & CAMBIO IMAGEN
            ========================================= */
         @media (max-width: 768px) {
-            /* CAMBIO CLAVE: Usa la foto vertical (Alex_Mobile.png) en celular */
+            /* CAMBIO CRÍTICO: Fondo Azul + Imagen Contenida */
             #inicio { 
                 background-image: url('Alex_Mobile.png'); 
-                background-position: center top; 
+                
+                /* Esto asegura que la foto se vea COMPLETA (Logo incluido) */
+                background-size: contain; 
+                background-repeat: no-repeat;
+                background-position: top center;
+                
+                /* El resto de la pantalla se llena de azul corporativo */
+                background-color: var(--primary); 
+                
+                /* Ajuste de altura */
+                height: 100vh;
+                justify-content: flex-end; /* Empuja el contenido abajo */
+                padding-bottom: 20px;
             }
 
-            /* Menú móvil ajustado */
+            /* Sombra inferior eliminada en móvil porque usamos fondo sólido */
+            #inicio::before { display: none; }
+
+            /* CAJA FLOTANTE PARA EL BOTÓN EN MÓVIL */
+            /* Esto evita que el botón se pierda o tape la foto */
+            .hero-content {
+                background: rgba(14, 42, 71, 0.9); /* Caja azul semi-transparente */
+                padding: 20px;
+                border-radius: 15px 15px 0 0; /* Bordes redondeados arriba */
+                width: 100%;
+                margin-bottom: 0;
+                box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+                border-top: 2px solid var(--gold);
+            }
+
+            /* Menú móvil */
             .nav-links { 
                 display: none; position: absolute; top: 70px; right: 0; 
                 background: var(--primary); width: 100%; flex-direction: column; 
                 padding: 20px; text-align: center; margin-right: 0; 
+                border-bottom: 2px solid var(--gold);
             }
             .nav-links.active { display: flex; }
-            .hamburger { display: block; }
+            .hamburger { display: block; margin-right: 15px; }
             .about-grid { grid-template-columns: 1fr; }
             
-            /* Ajustes finos */
-            .logo-container img { height: 60px; }
+            .logo-container img { height: 50px; margin-left: 10px; }
             .nav-links a { color: #fff; text-shadow: none; }
         }
     </style>
@@ -333,7 +354,7 @@
     </div>
 
     <script>
-        // --- 1. DICCIONARIO DE TRADUCCIONES ---
+        // --- 1. TRADUCCIONES ---
         const translations = {
             es: {
                 menu_home: "Inicio", menu_about: "Acerca de", menu_services: "Servicios", menu_cases: "Casos de Éxito", menu_contact: "Contacto",
@@ -381,7 +402,6 @@
             }
         };
 
-        // DATOS DE HISTORIAS (Con soporte bilingüe en Títulos y Resumen)
         const storiesData = [
             { id: 13, date: "Dec 3, 2025", 
               es: { title: "Sales Force Sizing", desc: "La estrategia que redujo costos y redefinió el tamaño ideal de una fuerza de ventas." },
@@ -452,12 +472,12 @@
 
         let currentLang = 'es';
 
-        // --- FUNCIONALIDAD CAMBIO IDIOMA ---
+        // --- FUNCIONES ---
         function toggleLanguage() {
             currentLang = currentLang === 'es' ? 'en' : 'es';
             document.getElementById('langLabel').innerText = currentLang.toUpperCase();
             
-            // 1. Traducir textos estáticos
+            // Traducir estáticos
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[currentLang][key]) {
@@ -465,14 +485,13 @@
                 }
             });
 
-            // 2. Regenerar tarjetas de historias
+            // Regenerar historias
             renderStories();
         }
 
-        // --- RENDERIZAR HISTORIAS ---
         function renderStories() {
             const container = document.getElementById('casesGrid');
-            container.innerHTML = ''; // Limpiar
+            container.innerHTML = ''; 
             
             storiesData.forEach(story => {
                 const title = story[currentLang].title;
@@ -492,19 +511,16 @@
             });
         }
 
-        // --- MENÚ MÓVIL Y EFECTO SCROLL ---
+        // Scroll Header
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        // Mobile Menu
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
-        const header = document.querySelector('.header');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        
         hamburger.addEventListener('click', () => {
             if (navLinks.style.display === 'flex') {
                 navLinks.style.display = 'none';
@@ -518,11 +534,11 @@
                 navLinks.style.width = '100%';
                 navLinks.style.padding = '20px';
                 navLinks.style.textAlign = 'center';
-                navLinks.style.marginRight = '0'; // Quitar margen en mobile
+                navLinks.style.marginRight = '0';
             }
         });
 
-        // --- MODAL ---
+        // Modal
         const modal = document.getElementById("storyModal");
         const modalBody = document.getElementById("modalBody");
         const closeBtn = document.getElementsByClassName("close-modal")[0];
@@ -544,10 +560,7 @@
         closeBtn.onclick = function() { modal.style.display = "none"; document.body.style.overflow = "auto"; }
         window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; document.body.style.overflow = "auto"; } }
 
-        // --- INICIALIZAR ---
-        document.addEventListener('DOMContentLoaded', renderStories);
-
-        // --- CONTACTO ---
+        // Contact
         const contactForm = document.getElementById('contactForm');
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -557,13 +570,16 @@
             const telefono = document.getElementById('telefono').value;
             const consulta = document.getElementById('consulta').value;
 
-            alert(`Gracias/Thank you ${nombre}. Hemos recibido tu mensaje/We received your message.`);
+            alert(`Gracias ${nombre}. Hemos recibido tu mensaje.`);
             
             const subject = `Consulta Web: ${nombre}`;
             const body = `Nombre: ${nombre}\nEmpresa: ${empresa}\nTel: ${telefono}\nEmail: ${email}\n\nConsulta:\n${consulta}`;
             window.location.href = `mailto:alexanderacostaconsulting@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             contactForm.reset();
         });
+
+        // Init
+        document.addEventListener('DOMContentLoaded', renderStories);
     </script>
 </body>
 </html>
